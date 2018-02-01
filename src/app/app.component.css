@@ -1,3 +1,35 @@
+/* Propeller typography */
+/*@import "http://propeller.in/components/typography/css/typography.css";*/
+
+/* Propeller buttons */
+@import "http://propeller.in/components/button/css/button.css";
+
+/* Propeller icons */
+@import "http://fonts.googleapis.com/icon?family=Material+Icons";
+@import "http://propeller.in/components/icons/css/google-icons.css";
+
+/* Propeller css for Floating Action Button*/
+.pmd-floating-action { bottom: 0; position: fixed;  margin:4rem;  right: 0; }
+.pmd-floating-action-btn { display:block; position: relative; transition: all .2s ease-out;}
+.pmd-floating-action-btn:before { bottom: 10%; content: attr(data-title); opacity: 0; position: absolute; right: 100%; transition: all .2s ease-out .5s;  white-space: nowrap; background-color:#fff; padding:6px 12px; border-radius:2px; color:#333; font-size:12px; margin-right:5px; display:inline-block; box-shadow: 0px 2px 3px -2px rgba(0, 0, 0, 0.18), 0px 2px 2px -7px rgba(0, 0, 0, 0.15);}
+.pmd-floating-action-btn:last-child:before { font-size: 14px; bottom: 25%;}
+.pmd-floating-action-btn:active, .pmd-floating-action-btn:focus, .pmd-floating-action-btn:hover {box-shadow: 0px 5px 11px -2px rgba(0, 0, 0, 0.18), 0px 4px 12px -7px rgba(0, 0, 0, 0.15);}
+.pmd-floating-action-btn:not(:last-child){ opacity: 0; -ms-transform: translateY(20px) scale(0.3); transform: translateY(20px) scale(0.3); margin-bottom:15px; margin-left:8px; position:absolute; bottom:0;}
+.pmd-floating-action-btn:not(:last-child):nth-last-child(1) { transition-delay: 50ms;}
+.pmd-floating-action-btn:not(:last-child):nth-last-child(2) { transition-delay: 100ms;}
+.pmd-floating-action-btn:not(:last-child):nth-last-child(3) { transition-delay: 150ms;}
+.pmd-floating-action-btn:not(:last-child):nth-last-child(4) { transition-delay: 200ms;}
+.pmd-floating-action-btn:not(:last-child):nth-last-child(5) { transition-delay: 250ms;}
+.pmd-floating-action-btn:not(:last-child):nth-last-child(6) { transition-delay: 300ms;}
+.pmd-floating-action:hover .pmd-floating-action-btn, .menu--floating--open .pmd-floating-action-btn { opacity: 1; -ms-transform: none; transform: none; position:relative; bottom:auto;}
+.pmd-floating-action:hover .pmd-floating-action-btn:before, .menu--floating--open .pmd-floating-action-btn:before { opacity: 1;}
+.pmd-floating-hidden{ display:none;}
+.pmd-floating-action-btn.btn:hover{ overflow:visible;}
+
+.pmd-floating-action-btn .ink{ width:50px; height:50px;}
+
+
+
 /* navbar */
 .navbar-default {
     background-color: white;
@@ -74,3 +106,351 @@
           color: #333;
     }
 }
+.float{
+	position:fixed;
+	width:60px;
+	height:60px;
+	bottom:40px;
+	right:40px;
+	background-color:royalblue;
+	color:white;
+	border-radius:50px;
+	text-align:center;
+	z-index: 1;
+}
+
+.my-float{
+	margin-top:22px;
+}
+
+
+.container_chatbot
+{
+  position: relative;
+  width: 430px;
+  height: 900px;
+  margin: 0px auto;
+  margin-left:70% ;
+  display: inline-block;
+  
+}
+
+
+div.app
+{
+  position: relative;
+  width: 380px;
+  height: 600px;
+  background: #5850c0;
+  margin-top: 30px;
+}
+
+div.app:before
+{
+  content: '';
+  position: absolute;
+  left: 0;
+  width: 100%;
+  height: 100px;
+  display: inline-block;
+  box-shadow: inset 0 80px 85px -35px #3c33b0;
+  z-index: 0;
+}
+
+div.app:after
+{
+  content: '';
+  position: absolute;
+  left: 0;
+  width: 100%;
+  height: 100px;
+  display: inline-block;
+  bottom: 0;
+  /*box-shadow: inset 0 -80px 85px -35px #3c33b0;*/
+  z-index: 0;
+}
+
+div.app div.head
+{
+  z-index: 1;
+  position: relative;
+  display: block;
+  width: 100%;
+  height: 50px;
+  line-height: 48px;
+  text-align: center;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  color: rgba(255,255,255,0.7);
+
+  background: #271c5d;
+  border-bottom: 1px solid rgba(255,255,255,0.35);
+  box-shadow: inset 0 -15px 35px -5px rgba(0,0,0,0.3);
+}
+
+div.head span.title
+{
+  position: absolute;
+  width: 100%;
+  display: inline-block;
+  left: 0;
+  font-size: 16px;
+  font-weight: 500;
+  margin-top: 2px;
+  color: #fff;
+}
+div.head span.messages-notification
+{
+  position: relative;
+  float: left;
+  font-size: 18px;
+  font-weight: normal;
+  margin-left: 15px;
+  color: #fff;
+  margin-top: 2px;
+}
+
+
+div.head span.create-new
+{
+  float: right;
+  font-size: 17px;
+  font-weight: 500;
+  margin-right: 15px;
+  color: #fff;
+  margin-top: 10px;
+}
+
+.clearfix::after
+{
+  content: '';
+  clear: both;
+  display: table;
+}
+.friend-list
+{
+  margin-top: 25px;
+
+}
+
+.friend-list ul li
+{
+  position: relative;
+  list-style: none;
+  float: left;
+  width: 20%;
+  text-align: center;
+  margin-left: 28%;
+  
+}
+
+.friend-list ul li img
+{
+   width: 150%;
+   height: 150%;
+  border-radius: 100%;
+  border: 3px solid rgba(255,255,255,1);
+  margin-bottom: 10px;
+}
+.friend-list ul li.active img,
+.friend-list ul li.active span.name
+{
+  opacity: 1;
+}
+
+.friend-list ul li.active img
+{
+  box-shadow: 1px 1px 0 rgba(39,28,93,0.5),
+              -1px -1px 0 rgba(39,28,93,0.5),
+              0 0 35px rgba(255,255,255,0.3);
+}
+
+.friend-list ul li span.name
+{
+  position: relative;
+  width: 100%;
+  left: 0;
+  text-transform: uppercase;
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.5px;
+  color: rgba(255,255,255,0.9);
+  margin-left: 30%;
+}
+
+.friend-list ul li.active span.name
+{
+  top: -7px;
+}
+
+.friend-list ul li span.name span.status
+{
+  display: block;
+  text-transform: none;
+  font-weight: 300;
+  font-size: 8px;
+  color: rgba(255,255,255,0.5);
+  margin-left: 30%;
+}
+
+.friend-list ul li.active span.name span.status
+{
+  font-size: 9px;
+}
+.friend-list ul li.active span.messages,
+.friend-list ul li span.messages.hide
+{
+  display: none;
+}
+div.chat-messages div.chat
+{
+margin-top: 25px;
+  position: relative;
+  width: 80%;
+  height: 300px;
+  background: #fcfcfe;
+  left: 50%;
+  margin-left: -150px;
+  padding: 20px;
+  border-radius: 5px;
+  font-size: 15px;
+
+  box-shadow: 30px 0 0 -15px #a7a4dd,
+              60px 0 0 -30px #7570c8,
+              -30px 0 0 -15px #a7a4dd,
+              -60px 0 0 -30px #7570c8,
+              0 0 25px rgba(255,255,255,0.5);
+}
+div.chat div.chat-content > span
+{
+  margin-bottom: 12px;
+}
+
+div.chat div.chat-content span.friend
+{
+  position: relative;
+  width: 70%;
+  height: auto;
+  display: inline-block;
+  background: #fff;
+  padding: 10px;
+  padding-bottom: 25px;
+  box-shadow: 2px 2px 20px -2px rgba(60,51,176,0.2);
+  color: rgba(60,51,176,1);
+}
+/*div.chat div.chat-content span.friend.first
+{
+  border-radius: 15px 15px 15px 2px;
+}*/
+
+div.chat div.chat-content span.friend.last
+{
+  border-radius: 2px 15px 15px 15px;
+}
+
+div.chat div.chat-content span.friend span.time
+{
+  position: absolute;
+  display: block;
+  right: 0;
+  margin-top: 5px;
+  margin-right: 10px;
+  font-size: 10px;
+  font-weight: 500;
+  color: rgba(60,51,176,0.5);
+}
+
+div.chat div.chat-content span.you
+{
+  position: relative;
+  float: right;
+  width: 70%;
+  height: auto;
+  background: #5850c0;
+  display: inline-block;
+  padding: 10px;
+  padding-bottom: 25px;
+  color: #fff;
+
+  box-shadow: 2px 2px 20px rgba(60,51,176,0.2),
+              inset -10px -10px 55px rgba(255,255,255,0.1);
+}
+div.chat div.chat-content span.you span.time
+{
+  position: absolute;
+  display: block;
+  right: 0;
+  margin-top: 5px;
+  margin-right: 10px;
+  font-size: 10px;
+  font-weight: 500;
+  color: rgba(255,255,255,0.5);
+}
+
+div.chat div.chat-content span.you.first
+{
+  border-radius: 15px 15px 2px 15px;
+}
+
+/*div.chat div.chat-content span.you.last
+{
+  border-radius: 15px 2px 15px 15px;
+}*/
+div.msg-box
+{
+  position: absolute;
+  width: 100%;
+  bottom: 0;
+  left: 0;
+  border-top: 1px solid rgba(60,51,176,0.1);
+  overflow: hidden;
+}
+
+div.msg-box .ip-msg
+{
+  width: 70%;
+  font-size: 14px;
+  padding: 15px;
+  padding-right: 30%;
+  color: rgba(60,51,176,0.9);
+  border: none;
+  background: rgba(0,0,0,0.03);
+}
+
+div.msg-box .ip-msg::placeholder
+{
+  color: rgba(60,51,176,0.4);
+}
+
+div.msg-box span.btn-group
+{
+  position: absolute;
+  right: 0;
+  top: 0;
+  margin-top: 14px;
+  display: inline-block;
+  margin-right: 10px;
+}
+
+div.msg-box span.btn-group i
+{
+  color: rgba(60,51,176,1);
+  font-size: 18px;
+  padding: 0 7px;
+}
+.hide{
+    float: right;
+    position: absolute;
+    z-index: 100;
+}
+/*.close{
+    margin-top: 10px;
+    font-size: 16px;
+    font-weight: 600;
+    color:#fff;
+}
+.close:hover{
+    font-size: 16px;
+    font-weight: 600;
+    color:#fff;
+}*/

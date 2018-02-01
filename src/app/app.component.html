@@ -10,8 +10,8 @@
     </div>
     <div class="collapse navbar-collapse" id="myNavbar">
       <ul class="nav navbar-nav navbar-right">
-        <li><a href="#">Home</a></li>
-        <li><a routerLink="/chatbot" routerLinkActive="active">ChatBot</a></li>
+        <li><a routerLink="/home" routerLinkActive="active">Home</a></li>
+        <li><a (click) = "onVisible()" >ChatBot</a></li>
         <li><a href="#">Sources</a></li>
         <li><a routerLink="/map" routerLinkActive="active">MAP</a></li>
         <li><a href="#">About</a></li>
@@ -24,3 +24,92 @@
 </nav>
 
 <router-outlet></router-outlet>
+<div class="container_chatbot hide" *ngIf = "visible;then chatbot else fab"></div>
+<!-- Floating Action Button like Google Material -->
+<ng-template #chatbot >
+   <div class="container_chatbot">
+      <div class="app">
+            <div class="head clearfix">
+            <span class="messages-notification">
+                <i class="fa fa-comments-o"></i>
+                <span class="count"></span>
+            </span>
+            <span class="title">Messenger</span>
+            <span class="create-new">
+              <a (click) = "onVisible()" class="close">
+                <i class="material-icons">expand_more</i>
+              </a>
+               <!--<a (click) = "onVisible()" href="javascript:void(0);"> <i class="fa fa-pencil-square-o"></i> </a>-->
+            </span>
+            </div>
+
+            <div class="body">
+                <div class="friend-list clearfix">
+                    <ul>
+                        <li class="active">
+                            <span class="messages hide">
+                            <span class="count"></span>
+                            </span>
+                            <img src="https://s5.postimg.org/3wnxyjz8n/image.png" alt="" />
+                            <span class="name">
+                                 Jiffy
+                            <!--<span class="status">
+                                Active Now
+                            </span>-->
+                            </span>
+                        </li>
+
+                    </ul>
+                </div>
+                <div class="chat-messages">
+                    <div class="chat">
+                        <div class="chat-content clearfix">
+                            <span class="friend last">
+                            Hi, How can I help you?
+                            <span class="time">
+                                7:30 PM
+                            </span>
+                            </span>
+                            <span class="you first">
+                            Hi, Can you answer my question?
+                            <span class="time">
+                                7:31 PM
+                            </span>
+                            </span>
+                            <span class="you first">
+                            Your name!
+                            <span class="time">
+                                7:31 PM
+                            </span>
+                            </span>
+                        </div>
+                        <div class="msg-box">
+                            <input type="text" class="ip-msg" placeholder="type something.." />
+                            <span class="btn-group">
+                            <i class="fa fa-paper-plane"></i>
+                            </span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+      </div>
+ </div>
+
+</ng-template>
+<ng-template #fab>
+    <div class="menu pmd-floating-action"  role="navigation"> 
+      <a href="javascript:void(0);" class="pmd-floating-action-btn btn btn-sm pmd-btn-fab pmd-btn-raised pmd-ripple-effect btn-default" data-title="Predict"> 
+        <span class="pmd-floating-hidden">Predict</span> 
+        <i class="material-icons">radio_button_checked</i>
+      </a> 
+      <a (click) = "onVisible()" class="pmd-floating-action-btn btn btn-sm pmd-btn-fab pmd-btn-raised pmd-ripple-effect btn-default" data-title="CHat"> 
+        <span class="pmd-floating-hidden">Chat</span> 
+        <i class="material-icons">question_answer</i> 
+      </a> 
+      <a class="pmd-floating-action-btn btn pmd-btn-fab pmd-btn-raised pmd-ripple-effect btn-primary" data-title="Chat/Predict"> 
+        <span class="pmd-floating-hidden">Primary</span>
+        <i class="material-icons pmd-sm">expand_less</i> 
+      </a> 
+    </div>
+</ng-template>

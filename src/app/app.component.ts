@@ -7,4 +7,9 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'app';
+  visible = false;
+
+  onVisible(){
+    this.visible = !this.visible;
+  }
 }
