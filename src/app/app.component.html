@@ -24,7 +24,7 @@
 </nav>
 
 <router-outlet></router-outlet>
-<div class="container_chatbot hide" *ngIf = "visible;then chatbot else fab"></div>
+<div class="float_template" *ngIf = "visible;then chatbot else fab"></div>
 <!-- Floating Action Button like Google Material -->
 <ng-template #chatbot >
    <div class="container_chatbot">
@@ -62,37 +62,34 @@
                     </ul>
                 </div>
                 <div class="chat-messages">
-                    <div class="chat">
-                        <div class="chat-content clearfix">
-                            <span class="friend last">
-                            Hi, How can I help you?
-                            <span class="time">
+                    <div  class="chat">
+                        <div  class="chat-content clearfix" >
+                            <span *ngFor= "let message of messages_receiver" class="friend last">
+                            {{message}}
+                            <!--<span class="time">
                                 7:30 PM
+                            </span>-->
                             </span>
+                            
+                            <span *ngFor= "let message of messages_sender" class="you first">
+                              {{message}}
+                              <!--<span class="time">
+                                  7:31 PM
+                              </span>-->
                             </span>
-                            <span class="you first">
-                            Hi, Can you answer my question?
-                            <span class="time">
-                                7:31 PM
-                            </span>
-                            </span>
-                            <span class="you first">
-                            Your name!
-                            <span class="time">
-                                7:31 PM
-                            </span>
-                            </span>
+                            
                         </div>
                         <div class="msg-box">
-                            <input type="text" class="ip-msg" placeholder="type something.." />
+                            <input type="text" [(ngModel)]= "message" class="ip-msg" placeholder="type something.." />
                             <span class="btn-group">
-                            <i class="fa fa-paper-plane"></i>
+                            <a (click) = "send()" >
+                              <i class="fa fa-paper-plane"></i>
+                            </a>
                             </span>
                         </div>
-                    </div>
+                    </div>                    
                 </div>
             </div>
-
       </div>
  </div>
 
