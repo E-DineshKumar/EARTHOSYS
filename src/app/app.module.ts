@@ -8,6 +8,7 @@ import { ChatbotComponent } from './chatbot/chatbot.component';
 import { MapComponent } from './map/map.component';
 import { HttpModule } from '@angular/http';
 import { FormsModule } from '@angular/forms';
+import { AgmCoreModule } from '@agm/core';
 import { DjangoService } from './django.service';
 
 const appRoutes: Routes = [
@@ -33,7 +34,10 @@ const appRoutes: Routes = [
     BrowserModule,
     FormsModule,
     HttpModule,
-    NgbModule.forRoot()
+    NgbModule.forRoot(),
+    AgmCoreModule.forRoot({
+      apiKey: 'AIzaSyCo-UQRP3Eapowr1mvUSdzxIZSyIPdB_-I'
+    })
   ],
   providers: [DjangoService],
   bootstrap: [AppComponent]

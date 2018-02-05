@@ -1,11 +1,26 @@
-            <br>
-             <br> <br> <br>
-            
-            <input type="text"  class="fields" placeholder = "Magnitude" [(ngModel)]="magnitude"><br><br>
+
+            <!--<input type="text"  class="fields" placeholder = "Magnitude" [(ngModel)]="magnitude"><br><br>
 
             <input type = "text" class="fields" placeholder = "Focal Depth" [(ngModel)]="focal_depth"><br><br>
             <input type="text"  class="fields" placeholder = "Latitude" [(ngModel)]="latitude"><br><br>
 
             <input type = "text"  class="fields" placeholder = "Longitude" [(ngModel)]="longitude"><br><br>
 
-            <button (click) = "onsubmit()" class="signupBtn">Predict</button>
+            <button (click) = "onsubmit()" class="signupBtn">Predict</button>-->            
+<agm-map [latitude]="lat" [longitude]="lng">
+    <agm-marker 
+      *ngFor="let m of markers;"
+      [latitude]="m.lat"
+      [longitude]="m.lng"
+      [label]="m.label"
+      [markerDraggable]="m.draggable">
+      <agm-info-window>{{m.tsunami}}</agm-info-window>
+  </agm-marker>
+  <agm-circle *ngFor="let m of markers;"
+      [latitude]="m.lat" [longitude]="m.lng" 
+      [radius]="5000"
+      [fillColor]="'blue'"
+      [circleDraggable]="false"
+      [editable]="false">
+  </agm-circle>
+</agm-map>
