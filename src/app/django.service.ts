@@ -7,8 +7,8 @@ export class DjangoService {
 
   constructor(public http : Http) { }
 
-  predict(magnitude,focal_depth,latitude,longitude){
-    var data = {"magnitude" : magnitude, "focal_depth" : focal_depth , "latitude": latitude, "longitude": longitude };
+  predict(magnitude, depth, latitude, longitude){
+    var data = {"magnitude" : magnitude, "depth" : depth , "latitude": latitude, "longitude": longitude };
     let headers = new Headers({ 'Content-Type': 'application/json'});
     let options = new RequestOptions({headers: headers});
     let body = JSON.stringify(data);
