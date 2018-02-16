@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { Observable } from 'rxjs/Rx';
+import { DjangoService } from './django.service';
 
 @Component({
   selector: 'app-root',
@@ -19,6 +20,7 @@ export class AppComponent {
   longitude : number;
   tsunami : boolean = false;
 
+  constructor(public djangoService : DjangoService) { }
   // Observable.interval(2000 * 60).subscribe(x => {
     
   // });
@@ -64,7 +66,16 @@ export class AppComponent {
   onClickpredict(){
     this.e_data.push({mag : this.magnitude, dep : this.depth, lat : this.latitude, lng : this.longitude, tsu : this.tsunami});
   }
-
+  onSendMessage(){
+    this.djangoService.sendMessage(this.message).subscribe(
+      (result) => {
+        console.log(result["_body"]);
+      },
+      (error) => {
+        console.log(error);
+      }
+    );
+  }
   
 
 }

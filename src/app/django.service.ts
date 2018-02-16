@@ -14,4 +14,11 @@ export class DjangoService {
     let body = JSON.stringify(data);
     return this.http.post('',body,options);
   }
+  sendMessage(message){
+    var data = {"input" : message};
+    let headers = new Headers({ 'Content-Type': 'application/json'});
+    let options = new RequestOptions({headers: headers});
+    let body = JSON.stringify(data);
+    return this.http.post('',body,options);
+  }
 }

@@ -22,8 +22,7 @@ export class MapComponent implements OnInit {
     this.longitude = "";
   }
   
-  onsubmit(){
-    console.log("hii");
+  onsubmit(){    
     this.djangoService.predict(this.magnitude,this.focal_depth,this.latitude,this.longitude).subscribe(
       (result) => {
         console.log(result["_body"]);
