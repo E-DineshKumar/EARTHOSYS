@@ -34,10 +34,6 @@ export class AppComponent {
   onClickFab(){
     this.visible = 0;
   }
-  send(){
-    if((this.message.length)!=0)
-    this.messages_sender.push(this.message);
-  }
 
   
   e_data: earthquake_data[] = [
@@ -64,17 +60,40 @@ export class AppComponent {
 	  }
   ]
   onClickpredict(){
-    this.e_data.push({mag : this.magnitude, dep : this.depth, lat : this.latitude, lng : this.longitude, tsu : this.tsunami});
+    
   }
   onSendMessage(){
-    this.djangoService.sendMessage(this.message).subscribe(
-      (result) => {
-        console.log(result["_body"]);
-      },
-      (error) => {
-        console.log(error);
-      }
-    );
+    if((this.message.length)!=0){
+      this.messages_sender.push(this.message);
+        this.djangoService.sendMessage(this.message).subscribe(
+          (result) => {            
+             if(JSON.parse(result["_body"])["status"]=="success"){
+              this.messages_receiver.push(JSON.parse(result["_body"])["response"]);
+             }
+          },
+          (error) => {
+            console.log(error);
+          }
+        );
+    }
+  }
+  onSendPredictor(){
+    
+    //if((this.magnitude.toString.length != 0 && this.depth.toString.length != 0 && this.latitude.toString.length != 0 && this.longitude.toString.length != 0))
+    {
+          this.djangoService.sendPredict(this.magnitude, this.depth, this.latitude, this.longitude).subscribe(
+          (result) => {            
+            console.log(JSON.parse(result["_body"]));
+             if(JSON.parse(result["_body"])["status"]=="success"){
+               this.tsunami = JSON.parse(result["_body"])["result"];
+              this.e_data.push({mag : this.magnitude, dep : this.depth, lat : this.latitude, lng : this.longitude, tsu : this.tsunami});
+             }
+          },
+          (error) => {
+            console.log(error);
+          }
+        );
+    }
   }
   
 

@@ -80,7 +80,7 @@
                         <div class="msg-box">
                             <input type="text" [(ngModel)]= "message" class="ip-msg" placeholder="type something.." />
                             <span class="btn-group">
-                            <a (click) = "send()" >
+                            <a (click) = "onSendMessage()" >
                               <i class="material-icons">send</i>
                             </a>
                             </span>
@@ -186,7 +186,7 @@
 
                             </ul>
                             <span class="btn-group">
-                            <a (click) = "onClickpredict()" >
+                            <a (click) = "onSendPredictor()" >
                               <i class="material-icons">send</i>
                             </a>
                             </span>
