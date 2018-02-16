@@ -10,13 +10,19 @@ import { HttpModule } from '@angular/http';
 import { FormsModule } from '@angular/forms';
 import { AgmCoreModule } from '@agm/core';
 import { DjangoService } from './django.service';
+import { EarthquakedataComponent } from './earthquakedata/earthquakedata.component';
+import { AboutComponent } from './about/about.component';
+import { SourcesComponent } from './sources/sources.component';
 
 const appRoutes: Routes = [
   { path: 'home', component: HomeComponent },
   { path: '' , redirectTo: '/home',  pathMatch: 'full'},
   { path: 'chatbot', component: ChatbotComponent },
-  { path: 'map', component: MapComponent }
-  // { path: '**', component: NotfoundComponent }
+  { path: 'map', component: MapComponent },
+  { path: 'earthquake', component: EarthquakedataComponent },
+  { path: 'about', component: AboutComponent },
+  { path: 'sources', component: SourcesComponent },
+  { path: '**', component: HomeComponent }
 
 ];
 @NgModule({
@@ -24,7 +30,10 @@ const appRoutes: Routes = [
     AppComponent,
     HomeComponent,
     ChatbotComponent,
-    MapComponent
+    MapComponent,
+    EarthquakedataComponent,
+    AboutComponent,
+    SourcesComponent
   ],
   imports: [
     RouterModule.forRoot(

@@ -1,0 +1,18 @@
+/*.body{
+    background-image : url(http://www.bumm.sk/uploads/news/244/139244/klimavaltozas-nyolcvan-ev-es-felolvadnak-a-sarkkori-videkek-is_139244.jpg);
+    background-repeat: no-repeat;
+    background-size: cover;   
+    height: 100vh;
+}*/
+thead{
+    color: white;        
+}
+td{
+    
+    background: white;
+    font-size:14px;
+    text-transform: capitalize;
+}
+th{
+    font-size: 16px;
+}

@@ -6,21 +6,23 @@
 
             <input type = "text"  class="fields" placeholder = "Longitude" [(ngModel)]="longitude"><br><br>
 
-            <button (click) = "onsubmit()" class="signupBtn">Predict</button>-->            
-<agm-map [latitude]="lat" [longitude]="lng">
+            <button (click) = "onsubmit()" class="signupBtn">Predict</button>-->                  
+<div id="map">
+<agm-map  [latitude]="lat" [longitude]="lng">
     <agm-marker 
-      *ngFor="let m of markers;"
-      [latitude]="m.lat"
-      [longitude]="m.lng"
-      [label]="m.label"
-      [markerDraggable]="m.draggable">
-      <agm-info-window>{{m.tsunami}}</agm-info-window>
-  </agm-marker>
-  <agm-circle *ngFor="let m of markers;"
-      [latitude]="m.lat" [longitude]="m.lng" 
-      [radius]="5000"
-      [fillColor]="'blue'"
-      [circleDraggable]="false"
-      [editable]="false">
-  </agm-circle>
+        *ngFor="let m of markers;"
+        [latitude]="m.lat"
+        [longitude]="m.lng"
+        [label]="m.label"
+        [markerDraggable]="m.draggable">
+        <agm-info-window>{{m.tsunami}}</agm-info-window>
+    </agm-marker>
+    <agm-circle *ngFor="let m of markers;"
+        [latitude]="m.lat" [longitude]="m.lng" 
+        [radius]="5000"
+        [fillColor]="'red'"
+        [circleDraggable]="false"
+        [editable]="false">
+    </agm-circle>
 </agm-map>
+</div>

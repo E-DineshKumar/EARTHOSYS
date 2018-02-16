@@ -11,9 +11,9 @@
     <div class="collapse navbar-collapse" id="myNavbar">
       <ul class="nav navbar-nav navbar-right">
         <li><a routerLink="/home" routerLinkActive="active">Home</a></li>
-        <li><a (click) = "onVisible()" >ChatBot</a></li>
-        <li><a href="#">Sources</a></li>
-        <li><a routerLink="/map" routerLinkActive="active">MAP</a></li>
+        <li><a (click) = "onClickChatbot()" >ChatBot</a></li>
+        <li><a routerLink="/sources" routerLinkActive="active">Sources</a></li>
+        <li><a routerLink="/earthquake" routerLinkActive="active">MAP</a></li>
         <li><a href="#">About</a></li>
 
         <li><a href="#"><span class="glyphicon glyphicon-search"></span></a>
@@ -25,9 +25,8 @@
 
 <router-outlet></router-outlet>
 <div class="float_template" *ngIf = "visible;then chatbot else fab"></div>
-<!-- Floating Action Button like Google Material -->
-<ng-template #chatbot >
-   <div class="container_chatbot">
+<ng-template #chatbot [ngIf]="visible == 1">
+   <div class="container_chatbot ">
       <div class="app">
             <div class="head clearfix">
             <span class="messages-notification">
@@ -36,10 +35,9 @@
             </span>
             <span class="title">Messenger</span>
             <span class="create-new">
-              <a (click) = "onVisible()" class="close">
+              <a (click) = "onClickFab()" class="close">
                 <i class="material-icons">expand_more</i>
-              </a>
-               <!--<a (click) = "onVisible()" href="javascript:void(0);"> <i class="fa fa-pencil-square-o"></i> </a>-->
+              </a>               
             </span>
             </div>
 
@@ -83,7 +81,7 @@
                             <input type="text" [(ngModel)]= "message" class="ip-msg" placeholder="type something.." />
                             <span class="btn-group">
                             <a (click) = "send()" >
-                              <i class="fa fa-paper-plane"></i>
+                              <i class="material-icons">send</i>
                             </a>
                             </span>
                         </div>
@@ -94,13 +92,13 @@
  </div>
 
 </ng-template>
-<ng-template #fab>
+<ng-template #fab [ngIf]="visible == 0">
     <div class="menu pmd-floating-action"  role="navigation"> 
-      <a href="javascript:void(0);" class="pmd-floating-action-btn btn btn-sm pmd-btn-fab pmd-btn-raised pmd-ripple-effect btn-default" data-title="Predict"> 
+      <a (click) = "onClickPrediction()" class="pmd-floating-action-btn btn btn-sm pmd-btn-fab pmd-btn-raised pmd-ripple-effect btn-default" data-title="Predict"> 
         <span class="pmd-floating-hidden">Predict</span> 
         <i class="material-icons">radio_button_checked</i>
       </a> 
-      <a (click) = "onVisible()" class="pmd-floating-action-btn btn btn-sm pmd-btn-fab pmd-btn-raised pmd-ripple-effect btn-default" data-title="CHat"> 
+      <a (click) = "onClickChatbot()" class="pmd-floating-action-btn btn btn-sm pmd-btn-fab pmd-btn-raised pmd-ripple-effect btn-default" data-title="CHat"> 
         <span class="pmd-floating-hidden">Chat</span> 
         <i class="material-icons">question_answer</i> 
       </a> 
@@ -109,4 +107,96 @@
         <i class="material-icons pmd-sm">expand_less</i> 
       </a> 
     </div>
+</ng-template>
+<ng-template #prediction [ngIf]="visible == 2">
+   <div class="container_chatbot ">
+      <div class="app">
+            <div class="head clearfix">
+            <span class="messages-notification">
+                <i class="fa fa-comments-o"></i>
+                <span class="count"></span>
+            </span>
+            <span class="title">Messenger</span>
+            <span class="create-new">
+              <a (click) = "onClickFab()" class="close">
+                <i class="material-icons">expand_more</i>
+              </a>
+               <!--<a (click) = "onVisible()" href="javascript:void(0);"> <i class="fa fa-pencil-square-o"></i> </a>-->
+            </span>
+            </div>
+
+            <div class="body">
+                <div class="friend-list clearfix">
+                    <ul>
+                        <li class="active">
+                            <span class="messages hide">
+                            <span class="count"></span>
+                            </span>
+                            <img src="https://s5.postimg.org/3wnxyjz8n/image.png" alt="" />
+                            <span class="name">
+                                 Jiffy                            
+                            </span>
+                        </li>
+
+                    </ul>
+                </div>
+                <div class="chat-messages">
+                    <div  class="chat">
+                        <div  class="chat-content clearfix" >
+                            <!--Table-->
+                    <table class="table">
+
+                        <!--Table head-->
+                        <thead class="mdb-color darken-3">
+                            <tr class="text-white">
+                                <th>Magnitude</th>
+                                <th>Depth (km)</th>
+                                <th>Latitude</th>
+                                <th>Longitude</th>
+                                <th>Tsunami</th>                                    
+                            </tr>
+                        </thead>
+                        <!--Table head-->
+                        <!--Table body-->
+                        <tbody *ngFor= "let earthquake of e_data">
+                            <tr>                                    
+                                <td>{{ earthquake.mag }}</td>                                
+                                <td>{{ earthquake.dep }}</td>
+                                <td>{{ earthquake.lat }}</td>
+                                <td>{{ earthquake.lng }}</td>
+                                <td>{{ earthquake.tsu }}</td>
+                            </tr>                          
+                        </tbody>
+                        <!--Table body-->
+                    </table>
+                    <!--Table-->
+                          <div class="infomation">
+                            <p>*True - The Earthquake Data may generate Tsunami waves</p>
+                            <p>*False - The Earthquake Data won't generate Tsunami waves</p>
+                          </div>
+                        </div>
+                        
+                        <div class="msg-box">
+                            <ul style="margin-left:10px;" class="list-unstyled">
+                             
+                              <li>
+                                <span> <input type="text" class="ip-predict" placeholder="Magnitude" name="magnitude" [(ngModel)]="magnitude"></span>
+                                <span> <input type="text" class="ip-predict" placeholder="Focal Depth" name="focal_depth" [(ngModel)]="depth"></span>                              
+                                <span> <input type="text" class="ip-predict" placeholder="Latitude" name="latitude" [(ngModel)]="latitude"></span>
+                                <span> <input type="text" class="ip-predict" placeholder="Longitude" name="longitude" [(ngModel)]="longitude"></span>
+                              </li>
+
+                            </ul>
+                            <span class="btn-group">
+                            <a (click) = "onClickpredict()" >
+                              <i class="material-icons">send</i>
+                            </a>
+                            </span>
+                        </div>
+                    </div>                    
+                </div>
+            </div>
+      </div>
+ </div>
+
 </ng-template>

@@ -1,0 +1,38 @@
+<div class="body">
+  <div class="container">
+    <app-map></app-map>
+  </div>
+  <div class="container">
+    <!--Table-->
+                      <table class="table">
+
+                          <!--Table head-->
+                          <thead class="mdb-color darken-3">
+                              <tr class="text-white">
+                                  <th>Magnitude</th>
+                                  <th>Depth (km)</th>
+                                  <th>Latitude</th>
+                                  <th>Longitude</th>
+                                  <th>Epicenter</th>
+                                  <th>Date and Time</th>
+                                  <th>Tsunami</th>                                    
+                              </tr>
+                          </thead>
+                          <!--Table head-->
+                          <!--Table body-->
+                          <tbody *ngFor= "let earthquake of e_data">
+                              <tr>                                    
+                                  <td>{{ earthquake.mag }}</td>                                
+                                  <td>{{ earthquake.dep }}</td>
+                                  <td>{{ earthquake.lat }}</td>
+                                  <td>{{ earthquake.lng }}</td>
+                                  <td>{{ earthquake.epic }}</td>
+                                  <td>{{ earthquake.date }}</td>
+                                  <td>{{ earthquake.tsu }}</td>
+                              </tr>                          
+                          </tbody>
+                          <!--Table body-->
+                      </table>
+                      <!--Table-->
+  </div>
+</div>

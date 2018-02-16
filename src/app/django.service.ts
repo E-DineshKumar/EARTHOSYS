@@ -14,5 +14,4 @@ export class DjangoService {
     let body = JSON.stringify(data);
     return this.http.post('',body,options);
   }
-
 }

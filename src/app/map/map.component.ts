@@ -40,7 +40,7 @@ export class MapComponent implements OnInit {
 		  lat: 51.673858,
 		  lng: 7.815982,
 		  label: 'A',
-		  draggable: true,
+		  draggable: false,
       tsunami:true
 	  },
 	  {
@@ -54,9 +54,10 @@ export class MapComponent implements OnInit {
 		  lat: 51.723858,
 		  lng: 7.895982,
 		  label: 'C',
-		  draggable: true,
+		  draggable: false,
       tsunami:true
 	  }
+    
   ]
 }
 // just an interface for type safety.

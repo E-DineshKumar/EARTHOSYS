@@ -126,9 +126,12 @@
 
 .container_chatbot
 {
-  position: relative;
+  position: fixed;
+  bottom: 0;
+  right: 0;
+  z-index: 1;
   width: 430px;
-  height: 100%;
+  height: 90%;
   margin: 0px auto;
   margin-left:70% ;
   display: inline-block;
@@ -430,16 +433,21 @@ div.msg-box span.btn-group
   position: absolute;
   right: 0;
   top: 0;
-  margin-top: 14px;
+  margin-top: 5px;
   display: inline-block;
   margin-right: 10px;
 }
 
 div.msg-box span.btn-group i
 {
-  color: rgba(60,51,176,1);
-  font-size: 18px;
-  padding: 0 7px;
+  border: 1px solid rgba(60,51,176,1);
+  background-color: rgba(60,51,176,1);
+  color: white;
+  border-radius: 50%;
+  
+  /*color: rgba(60,51,176,1);*/
+  font-size: 22px;
+  padding: 7px 7px;
 }
 .hide{
     float: right;
@@ -454,4 +462,31 @@ div.msg-box span.btn-group i
   position: absolute;
   float: right;
   margin: 1rem;
+}
+.ip-predict{
+  width:15%;
+  font-size: 11px;
+  padding: 5px 8px;
+  
+  color: rgba(60,51,176,0.9);
+  border-radius: 30px;
+  border: 1px solid rgba(60,51,176,0.9);
+  background: rgba(0,0,0,0.03);
+  margin-top: 5px;
+}
+thead{
+    color: white;        
+}
+td{
+    font-size:10px;
+    text-transform: capitalize;
+}
+th{
+    font-size: 12px;
+}
+.infomation{
+    color: rgba(60,51,176,0.9);
+    font-size: 12px;
+    font-weight: 300;
+
 }
