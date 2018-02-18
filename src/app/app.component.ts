@@ -1,6 +1,5 @@
 import { Component } from '@angular/core';
 import { Observable } from 'rxjs/Rx';
-import { DjangoService } from './django.service';
 
 @Component({
   selector: 'app-root',
@@ -20,7 +19,6 @@ export class AppComponent {
   longitude : number;
   tsunami : boolean = false;
 
-  constructor(public djangoService : DjangoService) { }
   // Observable.interval(2000 * 60).subscribe(x => {
     
   // });
@@ -62,6 +60,7 @@ export class AppComponent {
   onClickpredict(){
     
   }
+<<<<<<< HEAD
   onSendMessage(){
     if((this.message.length)!=0){
       this.messages_sender.push(this.message);
@@ -95,6 +94,9 @@ export class AppComponent {
         );
     }
   }
+=======
+
+>>>>>>> parent of d72c70b... Added messenger service
   
 
 }

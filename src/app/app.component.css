@@ -475,14 +475,10 @@ div.msg-box span.btn-group i
   margin-top: 5px;
 }
 thead{
-    color: white;  
-    padding-left: 5px;
-    padding-right: 5px;      
+    color: white;        
 }
 td{
     font-size:10px;
-    padding-left: 5px;
-    padding-right: 5px; 
     text-transform: capitalize;
 }
 th{
@@ -492,6 +488,5 @@ th{
     color: rgba(60,51,176,0.9);
     font-size: 12px;
     font-weight: 300;
-    padding-left: 5px;
 
 }

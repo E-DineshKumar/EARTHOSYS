@@ -22,7 +22,21 @@ export class MapComponent implements OnInit {
     this.longitude = "";
   }
   
+<<<<<<< HEAD
   
+=======
+  onsubmit(){
+    console.log("hii");
+    this.djangoService.predict(this.magnitude,this.focal_depth,this.latitude,this.longitude).subscribe(
+      (result) => {
+        console.log(result["_body"]);
+      },
+      (error) => {
+        console.log(error);
+      }
+    );
+  }
+>>>>>>> parent of d72c70b... Added messenger service
    
   
   markers: marker[] = [

@@ -15,6 +15,7 @@ export class DjangoService {
     let body = JSON.stringify(data);
     return this.http.post('http://localhost:8000/api/predictor/',body,options);
   }
+<<<<<<< HEAD
   sendMessage(message){
     var data = {"input" : message};
     let headers = new Headers({ 'Content-Type': 'application/json'});
@@ -23,4 +24,6 @@ export class DjangoService {
     return this.http.post('http://localhost:8000/api/chatbot/',body,options);
   }
   
+=======
+>>>>>>> parent of d72c70b... Added messenger service
 }
