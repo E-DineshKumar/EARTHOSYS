@@ -1,45 +1,60 @@
-/*.fadedfx {
-  background-color: #fe5652;
-  visibility: hidden;
+
+
+.img {
+  margin-top: 5%;
+
 }
 
-.fadeIn {
-  animation-name: fadeIn;
-  -webkit-animation-name: fadeIn;
-  animation-duration: 1.5s;
-  -webkit-animation-duration: 1.5s;
-  animation-timing-function: ease-in-out;
-  -webkit-animation-timing-function: ease-in-out;
-  visibility: visible !important;
+
+.info {
+  float: left;
+  border-radius: 0 7px 10px 7px;
+  background-color: #ffffff;
 }
 
-@keyframes fadeIn {
-  0% {
-    opacity: 0.0;
-  }
-  100% {
-    opacity: 1;
-  }
-}
 
-@-webkit-keyframes fadeIn {
-  0% {
-    opacity: 0.0;
-  }
-  100% {
-    opacity: 1;
-  }
-}*/
-.container{
-    margin-top: 10%;
-}
-.card-img-profile{
-    width: 50%;
-  border-radius: 50%;
-  margin-top: -95px;
-  margin-bottom: 35px;
-  border: 5px solid #e6e5e1;
+.text h1 {
+  margin-left: 30px;
+  padding-top: 52px;
+  font-size: 34px;
+  color: #474747;
+  font-weight: 400;
+  display: inline-block
 }
 
 
 
+.text h2 {
+  margin-left: 15px;
+  font-size: 15px;
+  font-family: 'Raleway', sans-serif;
+  font-weight: 400;
+  text-transform: uppercase;
+  color: rgba(0, 0, 0, 0.6);
+
+  letter-spacing: 0.1em;
+  display: inline-block
+
+}
+
+.text p {
+ 
+  margin: 0 0 0 38px;
+  font-family: 'Playfair Display', serif;
+  color: #8d8d8d;
+  line-height: 1.5em;
+  font-size: 15px;
+  font-weight: lighter;
+  overflow: hidden;
+  text-align: justify;
+}
+
+
+
+
+span {
+  display: inline-block;
+ 
+  font-family: 'Suranna', serif;
+  font-size: 34px;
+}

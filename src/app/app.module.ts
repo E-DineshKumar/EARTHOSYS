@@ -13,6 +13,7 @@ import { DjangoService } from './django.service';
 import { EarthquakedataComponent } from './earthquakedata/earthquakedata.component';
 import { AboutComponent } from './about/about.component';
 import { SourcesComponent } from './sources/sources.component';
+import { ContactComponent } from './contact/contact.component';
 
 const appRoutes: Routes = [
   { path: 'home', component: HomeComponent },
@@ -21,6 +22,7 @@ const appRoutes: Routes = [
   { path: 'map', component: MapComponent },
   { path: 'earthquake', component: EarthquakedataComponent },
   { path: 'about', component: AboutComponent },
+  { path: 'contact', component: ContactComponent },
   { path: 'sources', component: SourcesComponent },
   { path: '**', component: HomeComponent }
 
@@ -33,7 +35,8 @@ const appRoutes: Routes = [
     MapComponent,
     EarthquakedataComponent,
     AboutComponent,
-    SourcesComponent
+    SourcesComponent,
+    ContactComponent
   ],
   imports: [
     RouterModule.forRoot(
