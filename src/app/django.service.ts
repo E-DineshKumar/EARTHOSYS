@@ -7,15 +7,16 @@ export class DjangoService {
 
   constructor(public http : Http) { }
 
+  getEarthquake(){    
+    return this.http.get('http://localhost:8000/api/feeds/');
+  }
   sendPredict(magnitude, depth, latitude, longitude){
-    
     var data = {"magnitude" : magnitude, "depth" : depth , "latitude": latitude, "longitude": longitude };
     let headers = new Headers({ 'Content-Type': 'application/json'});
     let options = new RequestOptions({headers: headers});
     let body = JSON.stringify(data);
     return this.http.post('http://localhost:8000/api/predictor/',body,options);
   }
-<<<<<<< HEAD
   sendMessage(message){
     var data = {"input" : message};
     let headers = new Headers({ 'Content-Type': 'application/json'});
@@ -24,6 +25,4 @@ export class DjangoService {
     return this.http.post('http://localhost:8000/api/chatbot/',body,options);
   }
   
-=======
->>>>>>> parent of d72c70b... Added messenger service
 }

@@ -1,4 +1,5 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
+import { DjangoService } from './django.service';
 import { Observable } from 'rxjs/Rx';
 
 @Component({
@@ -6,7 +7,7 @@ import { Observable } from 'rxjs/Rx';
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css']
 })
-export class AppComponent {
+export class AppComponent implements OnInit {
   title = 'app';
   visible = 0;
   message : String;
@@ -19,10 +20,54 @@ export class AppComponent {
   longitude : number;
   tsunami : boolean = false;
 
-  // Observable.interval(2000 * 60).subscribe(x => {
+ constructor(public djangoService : DjangoService) {
     
-  // });
-
+    Observable.interval(2000*60).subscribe(x => {
+      this.djangoService.getEarthquake().subscribe(
+          (result) => {            
+            this.e_data = [];
+            this.p_data = [];
+            var jsonData = JSON.parse(result["_body"]);
+            for (var i = 0; i < jsonData.feeds.length; i++) {
+                var feed = jsonData.feeds[i];
+                //console.log(feed.magnitude);
+                this.e_data.push({mag : feed.magnitude, dep : feed.depth, lat : feed.latitude, lng : feed.longitude,epic : feed.epicenter,date : feed.date, tsu : feed.tsunami});
+            }
+            for (var i = 0; i < jsonData.records.length; i++) {
+                var record = jsonData.records[i];
+                //console.log(feed.magnitude);
+                this.p_data.push({mag : record.magnitude, dep : record.depth, lat : record.latitude, lng : record.longitude, tsu : record.tsunami});
+            }
+          },
+          (error) => {
+            console.log(error);
+          }
+        );
+    });
+ }
+ 
+ ngOnInit() {
+   this.djangoService.getEarthquake() .subscribe(
+      (result) => {            
+            this.e_data = [];
+            this.p_data = [];
+            var jsonData = JSON.parse(result["_body"]);
+            for (var i = 0; i < jsonData.feeds.length; i++) {
+                var feed = jsonData.feeds[i];
+                //console.log(feed.magnitude);
+                this.e_data.push({mag : feed.magnitude, dep : feed.depth, lat : feed.latitude, lng : feed.longitude,epic : feed.epicenter,date : feed.date, tsu : feed.tsunami});
+            }
+            for (var i = 0; i < jsonData.records.length; i++) {
+                var record = jsonData.records[i];
+                //console.log(feed.magnitude);
+                this.p_data.push({mag : record.magnitude, dep : record.depth, lat : record.latitude, lng : record.longitude, tsu : record.tsunami});
+            }
+          },
+          (error) => {
+            console.log(error);
+          }
+        );
+  }
   onClickChatbot(){
     this.visible = 1;
   }
@@ -32,35 +77,10 @@ export class AppComponent {
   onClickFab(){
     this.visible = 0;
   }
-
   
-  e_data: earthquake_data[] = [
-	  {
-      mag : 7.8,
-      dep : 60,
-		  lat: 51.673,
-		  lng: 7.815,
-      tsu : true
-	  },
-	  {
-		  mag : 7.8,
-      dep : 60,
-		  lat: 51.673,
-		  lng: 7.815,
-      tsu:true
-	  },
-	  {
-		  mag : 7.8,
-      dep : 60,
-		  lat: 51.673,
-		  lng: 7.815,
-      tsu:true
-	  }
-  ]
-  onClickpredict(){
-    
-  }
-<<<<<<< HEAD
+  e_data : earthquake_data[]  = [];
+  p_data : predict_data[] = [];
+  
   onSendMessage(){
     if((this.message.length)!=0){
       this.messages_sender.push(this.message);
@@ -85,7 +105,7 @@ export class AppComponent {
             console.log(JSON.parse(result["_body"]));
              if(JSON.parse(result["_body"])["status"]=="success"){
                this.tsunami = JSON.parse(result["_body"])["result"];
-              this.e_data.push({mag : this.magnitude, dep : this.depth, lat : this.latitude, lng : this.longitude, tsu : this.tsunami});
+              this.p_data.push({mag : this.magnitude, dep : this.depth, lat : this.latitude, lng : this.longitude, tsu : this.tsunami});
              }
           },
           (error) => {
@@ -94,16 +114,20 @@ export class AppComponent {
         );
     }
   }
-=======
-
->>>>>>> parent of d72c70b... Added messenger service
-  
-
+}
+interface predict_data {
+  mag : number;
+  dep : number;
+	lat : number;
+	lng : number;
+  tsu : boolean;
 }
 interface earthquake_data {
   mag : number;
   dep : number;
 	lat : number;
 	lng : number;
+  epic : number;
+  date : String;
   tsu : boolean;
 }

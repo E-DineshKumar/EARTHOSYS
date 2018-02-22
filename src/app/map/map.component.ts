@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { DjangoService } from './../django.service';
+import { AppComponent } from './../app.component';
 @Component({
   selector: 'app-map',
   templateUrl: './map.component.html',
@@ -11,10 +12,12 @@ export class MapComponent implements OnInit {
   focal_depth : String;
   latitude : String;
   longitude : String;
-  lat: number = 51.673858;
-  lng: number = 7.815982;
-  constructor(public djangoService : DjangoService) { }
-
+  lat: number = 23.9888;
+  lng: number = 94.7021;
+  constructor(public appComponent : AppComponent) { 
+   
+  }
+  
   ngOnInit() {
     this.magnitude = "";
     this.focal_depth = "";
@@ -22,47 +25,9 @@ export class MapComponent implements OnInit {
     this.longitude = "";
   }
   
-<<<<<<< HEAD
+  markers: earthquake_data[] = this.appComponent.e_data;
   
-=======
-  onsubmit(){
-    console.log("hii");
-    this.djangoService.predict(this.magnitude,this.focal_depth,this.latitude,this.longitude).subscribe(
-      (result) => {
-        console.log(result["_body"]);
-      },
-      (error) => {
-        console.log(error);
-      }
-    );
-  }
->>>>>>> parent of d72c70b... Added messenger service
-   
   
-  markers: marker[] = [
-	  {
-		  lat: 51.673858,
-		  lng: 7.815982,
-		  label: 'A',
-		  draggable: false,
-      tsunami:true
-	  },
-	  {
-		  lat: 51.373858,
-		  lng: 7.215982,
-		  label: 'B',
-		  draggable: false,
-      tsunami:false
-	  },
-	  {
-		  lat: 51.723858,
-		  lng: 7.895982,
-		  label: 'C',
-		  draggable: false,
-      tsunami:true
-	  }
-    
-  ]
 }
 // just an interface for type safety.
 interface marker {
@@ -71,4 +36,12 @@ interface marker {
 	label?: string;
 	draggable: boolean;
   tsunami:boolean;
+}
+interface earthquake_data {
+  mag : number;
+  dep : number;
+	lat : number;
+	lng : number;
+  date : String;
+  tsu : boolean;
 }
