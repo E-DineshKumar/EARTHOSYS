@@ -8,12 +8,13 @@ import { Observable } from 'rxjs/Rx';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent implements OnInit {
+   
   title = 'app';
   visible = 0;
   message : String;
   time = new Date(2018,1,20);
-  messages_receiver = ["How can I help you?"];
-  messages_sender = [] ;
+  // messages_receiver = ["How can I help you?"];
+  // messages_sender = [] ;
   magnitude : number;
   depth : number;
   latitude : number;
@@ -80,25 +81,31 @@ export class AppComponent implements OnInit {
   
   e_data : earthquake_data[]  = [];
   p_data : predict_data[] = [];
+  messages : messages[] = [{
+    message : "How can I help you?",
+    self : false
+  }];
   
   onSendMessage(){
     if((this.message.length)!=0){
-      this.messages_sender.push(this.message);
+      this.messages.push({message: this.message, self : true})  
         this.djangoService.sendMessage(this.message).subscribe(
           (result) => {            
              if(JSON.parse(result["_body"])["status"]=="success"){
-              this.messages_receiver.push(JSON.parse(result["_body"])["response"]);
+              this.messages.push({message : JSON.parse(result["_body"])["response"], self : false });
              }
           },
           (error) => {
             console.log(error);
           }
         );
+        this.message = '';
+        
     }
   }
   onSendPredictor(){
     
-    //if((this.magnitude.toString.length != 0 && this.depth.toString.length != 0 && this.latitude.toString.length != 0 && this.longitude.toString.length != 0))
+    if((typeof this.magnitude !='undefined' && typeof this.depth !='undefined' && typeof this.latitude !='undefined' && typeof this.longitude !='undefined'))
     {
           this.djangoService.sendPredict(this.magnitude, this.depth, this.latitude, this.longitude).subscribe(
           (result) => {            
@@ -112,6 +119,8 @@ export class AppComponent implements OnInit {
             console.log(error);
           }
         );
+    }else{
+      alert("Please fill the details");
     }
   }
 }
@@ -130,4 +139,8 @@ interface earthquake_data {
   epic : number;
   date : String;
   tsu : boolean;
+}
+interface messages{
+  message : String;
+  self : boolean;
 }
