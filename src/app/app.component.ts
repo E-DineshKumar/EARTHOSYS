@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { DjangoService } from './django.service';
 import { Observable } from 'rxjs/Rx';
 
+
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
@@ -48,7 +49,7 @@ export class AppComponent implements OnInit {
  }
  
  ngOnInit() {
-   this.djangoService.getEarthquake() .subscribe(
+       this.djangoService.getEarthquake() .subscribe(
       (result) => {            
             this.e_data = [];
             this.p_data = [];
@@ -88,11 +89,21 @@ export class AppComponent implements OnInit {
   
   onSendMessage(){
     if((this.message.length)!=0){
+      var send = new Howl({
+      src: ['./../assets/send.mp3']
+      });
+      send.play();
       this.messages.push({message: this.message, self : true})  
         this.djangoService.sendMessage(this.message).subscribe(
           (result) => {            
              if(JSON.parse(result["_body"])["status"]=="success"){
-              this.messages.push({message : JSON.parse(result["_body"])["response"], self : false });
+                setTimeout(()=>{
+                  var receive = new Howl({
+                    src: ['./../assets/note.mp3']
+                  });
+                  receive.play();
+                  this.messages.push({message : JSON.parse(result["_body"])["response"], self : false });                  
+                },1500)
              }
           },
           (error) => {

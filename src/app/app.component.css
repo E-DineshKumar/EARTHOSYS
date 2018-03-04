@@ -131,8 +131,8 @@
   right: 0;
   z-index: 1;
   width: 430px;
-  height: 90%;
-  margin: 0px auto;
+ 
+  
   margin-left:70% ;
   display: inline-block;
   
@@ -143,9 +143,9 @@ div.app
 {
   position: relative;
   width: 380px;
-  height: 600px;
+  height: 550px;
   background: #5850c0;
-  margin-top: 30px;
+  
 }
 
 div.app:before
@@ -313,6 +313,7 @@ div.chat div.chat-content span.friend
   background: #fff;
   padding: 10px;
   padding-bottom: 25px;
+  font-weight: 400;
    
   box-shadow: 2px 2px 20px -2px rgba(60,51,176,0.2);
   color: rgba(60,51,176,1);
@@ -325,6 +326,7 @@ div.chat div.chat-content span.friend.last
 
 div.chat div.chat-content span.you
 {  margin-right: 10px;
+  font-weight: 400;
   position: relative;
   float: right;
   width: 70%;
@@ -353,10 +355,11 @@ div.msg-box
   border-top: 1px solid rgba(60,51,176,0.1);
   overflow: hidden;
   margin-top: 20px;
+  z-index: 1;
 }
 
 div.msg-box .ip-msg
-{
+{ height: 100%;
   width: 70%;
   font-size: 14px;
   padding: 15px;
@@ -407,7 +410,7 @@ div.msg-box span.btn-group i
 .float_template{
   position: absolute;
   float: right;
-  margin: 1rem;
+  
 }
 .ip-predict{
   width:15%;
@@ -424,7 +427,8 @@ thead{
     color: white;        
 }
 td{
-    font-size:10px;
+    font-size:13px;
+    font-weight: 400;
     text-transform: capitalize;
 }
 th{
@@ -433,6 +437,6 @@ th{
 .infomation{
     color: rgba(60,51,176,0.9);
     font-size: 12px;
-    font-weight: 300;
+    font-weight: 500;
 
 }

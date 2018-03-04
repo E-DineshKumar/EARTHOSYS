@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { DjangoService } from './../django.service';
 import { AppComponent } from './../app.component';
+
 @Component({
   selector: 'app-map',
   templateUrl: './map.component.html',
@@ -14,29 +15,35 @@ export class MapComponent implements OnInit {
   longitude : String;
   lat: number = 23.9888;
   lng: number = 94.7021;
-  constructor(public appComponent : AppComponent) { 
+  constructor(public appComponent : AppComponent, public djangoService : DjangoService) { 
    
   }
   
   ngOnInit() {
-    this.magnitude = "";
-    this.focal_depth = "";
-    this.latitude = "";
-    this.longitude = "";
+      this.djangoService.getEarthquake() .subscribe(
+      (result) => {            
+            this.markers = [];
+            
+            var jsonData = JSON.parse(result["_body"]);
+            for (var i = 0; i < jsonData.feeds.length; i++) {
+                var feed = jsonData.feeds[i];
+               
+                this.markers.push({mag : feed.magnitude, dep : feed.depth, lat : feed.latitude, lng : feed.longitude,date : feed.date, tsu : feed.tsunami});
+            }
+           
+          },
+          (error) => {
+            console.log(error);
+          }
+        );
   }
-  
   markers: earthquake_data[] = this.appComponent.e_data;
+  
   
   
 }
 // just an interface for type safety.
-interface marker {
-	lat: number;
-	lng: number;
-	label?: string;
-	draggable: boolean;
-  tsunami:boolean;
-}
+
 interface earthquake_data {
   mag : number;
   dep : number;
