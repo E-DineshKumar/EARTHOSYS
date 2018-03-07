@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { DjangoService } from './django.service';
 import { Observable } from 'rxjs/Rx';
+import { Howl } from 'howler';
 
 
 @Component({
