@@ -4,7 +4,7 @@
       <button type="button"   class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
-        <span class="icon-bar"></span>                        
+        <span class="icon-bar"></span>
       </button>
       <a  style ="font-size:200%"class="navbar-brand " href="#">EARTHOSYS</a>
     </div>
@@ -14,7 +14,7 @@
         <li><a (click) = "onClickChatbot()" >CHATBOT</a></li>
         <li><a routerLink="/sources" routerLinkActive="active">SOURCES</a></li>
         <li><a routerLink="/earthquake" routerLinkActive="active">MAP</a></li>
-        <li><a routerLink="/about" routerLinkActive="active">ABOUT</a></li>       
+        <li><a routerLink="/about" routerLinkActive="active">ABOUT</a></li>
       </ul>
     </div>
   </div>
@@ -34,17 +34,17 @@
             <span class="create-new">
               <a  (click) = "onClickFab()" class="close">
                 <i  class="material-icons">expand_more</i>
-              </a>               
+              </a>
             </span>
             </div>
 
             <div class="body">
                 <div class="friend-list clearfix">
                     <ul>
-                        <li class="active">                            
+                        <li class="active">
                             <img src="./../assets/jiffy.png" alt="" />
                             <span class="name">
-                                 Jiffy                            
+                                 Jiffy
                             </span>
                         </li>
 
@@ -57,12 +57,12 @@
                                 <div *ngIf = "m.self;then you else bot"></div>
                                 <ng-template #bot>
                                     <span class="friend last">
-                                    {{m.message}}                                    
+                                    {{m.message}}
                                     </span>
                                 </ng-template>
                                 <ng-template #you>
                                     <span class="you first">
-                                    {{m.message}}                                    
+                                    {{m.message}}
                                     </span>
                                 </ng-template>
                             </div>
@@ -75,7 +75,7 @@
                                 </a>
                             </span>
                         </div>
-                    </div>                    
+                    </div>
                 </div>
             </div>
       </div>
@@ -83,19 +83,19 @@
 
 </ng-template>
 <ng-template #fab [ngIf]="visible == 0">
-    <div class="menu pmd-floating-action"  role="navigation"> 
-      <a (click) = "onClickPrediction()" class="pmd-floating-action-btn btn btn-sm pmd-btn-fab pmd-btn-raised pmd-ripple-effect btn-default" data-title="Predict"> 
-        <span class="pmd-floating-hidden">Predict</span> 
+    <div class="menu pmd-floating-action"  role="navigation">
+      <a (click) = "onClickPrediction()" class="pmd-floating-action-btn btn btn-sm pmd-btn-fab pmd-btn-raised pmd-ripple-effect btn-default" data-title="Predict">
+        <span class="pmd-floating-hidden">Predict</span>
         <i class="material-icons">radio_button_checked</i>
-      </a> 
-      <a (click) = "onClickChatbot()" class="pmd-floating-action-btn btn btn-sm pmd-btn-fab pmd-btn-raised pmd-ripple-effect btn-default" data-title="CHat"> 
-        <span class="pmd-floating-hidden">Chat</span> 
-        <i class="material-icons">question_answer</i> 
-      </a> 
-      <a class="pmd-floating-action-btn btn pmd-btn-fab pmd-btn-raised pmd-ripple-effect btn-primary" data-title="Chat/Predict"> 
+      </a>
+      <a (click) = "onClickChatbot()" class="pmd-floating-action-btn btn btn-sm pmd-btn-fab pmd-btn-raised pmd-ripple-effect btn-default" data-title="CHat">
+        <span class="pmd-floating-hidden">Chat</span>
+        <i class="material-icons">question_answer</i>
+      </a>
+      <a class="pmd-floating-action-btn btn pmd-btn-fab pmd-btn-raised pmd-ripple-effect btn-primary" data-title="Chat/Predict">
         <span class="pmd-floating-hidden">Primary</span>
-        <i class="material-icons pmd-sm">expand_less</i> 
-      </a> 
+        <i class="material-icons pmd-sm">expand_less</i>
+      </a>
     </div>
 </ng-template>
 <ng-template #prediction [ngIf]="visible == 2">
@@ -111,7 +111,7 @@
               <a (click) = "onClickFab()" class="close">
                 <i class="material-icons">expand_more</i>
               </a>
-               <!--<a (click) = "onVisible()" href="javascript:void(0);"> <i class="fa fa-pencil-square-o"></i> </a>-->
+               
             </span>
             </div>
 
@@ -119,9 +119,9 @@
                 <div class="friend-list clearfix">
                     <ul>
                         <li class="active">
-                           
+
                             <img src="./../assets/siri.gif" alt="" />
-                            
+
                         </li>
 
                     </ul>
@@ -139,19 +139,19 @@
                                 <th>Depth (km)</th>
                                 <th>Latitude</th>
                                 <th>Longitude</th>
-                                <th>Tsunami</th>                                    
+                                <th>Tsunami</th>
                             </tr>
                         </thead>
                         <!--Table head-->
                         <!--Table body-->
                         <tbody *ngFor= "let earthquake of p_data">
-                            <tr>                                    
-                                <td>{{ earthquake.mag }}</td>                                
+                            <tr>
+                                <td>{{ earthquake.mag }}</td>
                                 <td>{{ earthquake.dep }}</td>
                                 <td>{{ earthquake.lat }}</td>
                                 <td>{{ earthquake.lng }}</td>
                                 <td>{{ earthquake.tsu }}</td>
-                            </tr>                          
+                            </tr>
                         </tbody>
                         <!--Table body-->
                     </table>
@@ -161,13 +161,13 @@
                             <p>*False - The Earthquake Data won't generate Tsunami waves</p>
                           </div>
                         </div>
-                        
+
                         <div class="msg-box">
                             <ul style="margin-left:10px;" class="list-unstyled">
-                             
+
                               <li>
                                 <span> <input type="text" class="ip-predict" placeholder="Magnitude" name="magnitude" [(ngModel)]="magnitude"></span>
-                                <span> <input type="text" class="ip-predict" placeholder="Focal Depth" name="focal_depth" [(ngModel)]="depth"></span>                              
+                                <span> <input type="text" class="ip-predict" placeholder="Focal Depth" name="focal_depth" [(ngModel)]="depth"></span>
                                 <span> <input type="text" class="ip-predict" placeholder="Latitude" name="latitude" [(ngModel)]="latitude"></span>
                                 <span> <input type="text" class="ip-predict" placeholder="Longitude" name="longitude" [(ngModel)]="longitude"></span>
                               </li>
@@ -179,7 +179,7 @@
                             </a>
                             </span>
                         </div>
-                    </div>                    
+                    </div>
                 </div>
             </div>
       </div>

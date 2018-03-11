@@ -1,4 +1,4 @@
-    <div  id="video-carousel-example2" class="carousel slide carousel-fade hide-video" data-ride="carousel">          
+    <div  id="video-carousel-example2" class="carousel slide carousel-fade hide-video" data-ride="carousel">
 
             <!--Slides-->
             <div class="carousel-inner" role="listbox">
@@ -29,7 +29,7 @@
                             </ul>
                         </div>
                     </div>
-                    <!--Caption-->                   
+                    <!--Caption-->
                 </div>
             <!--Main Navigation-->
             </div>
@@ -54,8 +54,8 @@
             <div class="row mt-5 wow fadeIn" data-wow-delay="0.2s">
                 <!--Featured image-->
                 <div class="col-lg-6">
-                    <div>                         
-                        <app-map></app-map>                        
+                    <div>
+                        <app-map></app-map>
                     </div>
                 </div>
                 <!--/.Featured image-->
@@ -64,7 +64,7 @@
                     <a routerLink="/earthquake" routerLinkActive="active">
                         <h2 class="post-title font-bold">Past earthquakes</h2>
                     </a>
-                    <h6 class="dark-grey-text font-bold font-small">Last updated Time</h6>                    
+                    <h6 class="dark-grey-text font-bold font-small">Last updated Time</h6>
                     <!--Table-->
                     <table class="table">
 
@@ -74,26 +74,26 @@
                                   <th>Magnitude</th>
                                   <th>Depth (km)</th>
                                   <th>Latitude</th>
-                                  <th>Longitude</th>                                  
-                                  <th>Tsunami</th>                                          
+                                  <th>Longitude</th>
+                                  <th>Tsunami</th>
                             </tr>
                         </thead>
                         <!--Table head-->
 
                         <!--Table body-->
                         <tbody *ngFor= "let earthquake of e_data">
-                              <tr>                                    
-                                  <td>{{ earthquake.mag }}</td>                                
+                              <tr>
+                                  <td>{{ earthquake.mag }}</td>
                                   <td>{{ earthquake.dep }}</td>
                                   <td>{{ earthquake.lat }}</td>
-                                  <td>{{ earthquake.lng }}</td>                                  
+                                  <td>{{ earthquake.lng }}</td>
                                   <td>{{ earthquake.tsu }}</td>
-                              </tr>                          
+                              </tr>
                           </tbody>
                         <!--Table body-->
                     </table>
                     <!--Table-->
-                                                        
+
                     <div class="read-more">
                         <a routerLink="/earthquake" routerLinkActive="active" style="font-size: 100%;" class="btn btn-primary btn-lg" rel="nofollow">Read More</a>
                     </div>
@@ -104,8 +104,8 @@
             <hr class="extra-margin my-5">
         </div>
         <!--/.Main layout-->
-    </main>           
-                
+    </main>
+
     <!--Footer-->
     <footer  class="page-footer center-on-small-only mt-0" style="font-size:100%;">
         <div style="background : #1C2331;"><br>
@@ -154,21 +154,21 @@
                         </li>
                         <li>
                             <a target="_blank" href="https://www.ngdc.noaa.gov/ngdc.html">NOAA</a>
-                        </li>                        
+                        </li>
                     </ul>
                 </div>
                 <!--/.Third column-->
-                
+
             </div>
         </div>
         <!--/.Footer links-->
 
-        
+
 
         <!--Call to action-->
         <div class="call-to-action">
             <h4>For Earthosys Updates</h4>
-            <ul>               
+            <ul>
                 <li>
                 <input  type="text" placeholder="Type Your Email" style = "font-size:13px;" size="40">
                 </li>
@@ -190,4 +190,4 @@
         <!--/.Copyright-->
         </div>
     </footer>
-    <!--/.Footer-->    
+    <!--/.Footer-->

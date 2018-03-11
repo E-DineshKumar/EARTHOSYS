@@ -15,6 +15,7 @@ import { AboutComponent } from './about/about.component';
 import { SourcesComponent } from './sources/sources.component';
 import { ContactComponent } from './contact/contact.component';
 
+
 const appRoutes: Routes = [
   { path: 'home', component: HomeComponent },
   { path: '' , redirectTo: '/home',  pathMatch: 'full'},

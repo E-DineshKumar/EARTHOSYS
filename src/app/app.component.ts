@@ -10,13 +10,11 @@ import { Howl } from 'howler';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent implements OnInit {
-   
+
   title = 'app';
   visible = 0;
   message : String;
   time = new Date(2018,1,20);
-  // messages_receiver = ["How can I help you?"];
-  // messages_sender = [] ;
   magnitude : number;
   depth : number;
   latitude : number;
@@ -24,50 +22,47 @@ export class AppComponent implements OnInit {
   tsunami : boolean = false;
 
  constructor(public djangoService : DjangoService) {
-    
+
     Observable.interval(2000*60).subscribe(x => {
       this.djangoService.getEarthquake().subscribe(
-          (result) => {            
-            this.e_data = [];
+          (result) => {
             this.p_data = [];
             var jsonData = JSON.parse(result["_body"]);
             for (var i = 0; i < jsonData.feeds.length; i++) {
                 var feed = jsonData.feeds[i];
-                //console.log(feed.magnitude);
+
                 this.e_data.push({mag : feed.magnitude, dep : feed.depth, lat : feed.latitude, lng : feed.longitude,epic : feed.epicenter,date : feed.date, tsu : feed.tsunami});
             }
             for (var i = 0; i < jsonData.records.length; i++) {
                 var record = jsonData.records[i];
-                //console.log(feed.magnitude);
                 this.p_data.push({mag : record.magnitude, dep : record.depth, lat : record.latitude, lng : record.longitude, tsu : record.tsunami});
             }
           },
           (error) => {
-            console.log(error);
+            console.log("Error in AppComponent getEarthquake function ",error);
           }
         );
     });
  }
- 
+
  ngOnInit() {
        this.djangoService.getEarthquake() .subscribe(
-      (result) => {            
+      (result) => {
             this.e_data = [];
             this.p_data = [];
             var jsonData = JSON.parse(result["_body"]);
             for (var i = 0; i < jsonData.feeds.length; i++) {
                 var feed = jsonData.feeds[i];
-                //console.log(feed.magnitude);
                 this.e_data.push({mag : feed.magnitude, dep : feed.depth, lat : feed.latitude, lng : feed.longitude,epic : feed.epicenter,date : feed.date, tsu : feed.tsunami});
             }
             for (var i = 0; i < jsonData.records.length; i++) {
                 var record = jsonData.records[i];
-                //console.log(feed.magnitude);
                 this.p_data.push({mag : record.magnitude, dep : record.depth, lat : record.latitude, lng : record.longitude, tsu : record.tsunami});
             }
+            localStorage.setItem("store_data",JSON.stringify(this.e_data));
           },
           (error) => {
-            console.log(error);
+            console.log("Error in AppComponent OnInit",error);
           }
         );
   }
@@ -80,55 +75,54 @@ export class AppComponent implements OnInit {
   onClickFab(){
     this.visible = 0;
   }
-  
-  e_data : earthquake_data[]  = [];
-  p_data : predict_data[] = [];
+
+public e_data : earthquake_data[]  = [];
+public p_data : predict_data[] = [];
   messages : messages[] = [{
     message : "How can I help you?",
     self : false
   }];
-  
+
   onSendMessage(){
     if((this.message.length)!=0){
       var send = new Howl({
       src: ['./../assets/send.mp3']
       });
       send.play();
-      this.messages.push({message: this.message, self : true})  
+      this.messages.push({message: this.message, self : true})
         this.djangoService.sendMessage(this.message).subscribe(
-          (result) => {            
+          (result) => {
              if(JSON.parse(result["_body"])["status"]=="success"){
                 setTimeout(()=>{
                   var receive = new Howl({
                     src: ['./../assets/note.mp3']
                   });
                   receive.play();
-                  this.messages.push({message : JSON.parse(result["_body"])["response"], self : false });                  
+                  this.messages.push({message : JSON.parse(result["_body"])["response"], self : false });
                 },1500)
              }
           },
           (error) => {
-            console.log(error);
+            console.log("Error in AppComponent sendMessage function",error);
           }
         );
         this.message = '';
-        
+
     }
   }
   onSendPredictor(){
-    
+
     if((typeof this.magnitude !='undefined' && typeof this.depth !='undefined' && typeof this.latitude !='undefined' && typeof this.longitude !='undefined'))
     {
           this.djangoService.sendPredict(this.magnitude, this.depth, this.latitude, this.longitude).subscribe(
-          (result) => {            
-            console.log(JSON.parse(result["_body"]));
+          (result) => {
              if(JSON.parse(result["_body"])["status"]=="success"){
                this.tsunami = JSON.parse(result["_body"])["result"];
               this.p_data.push({mag : this.magnitude, dep : this.depth, lat : this.latitude, lng : this.longitude, tsu : this.tsunami});
              }
           },
           (error) => {
-            console.log(error);
+            console.log("Error in AppComponent onSendPredictor function",error);
           }
         );
     }else{
