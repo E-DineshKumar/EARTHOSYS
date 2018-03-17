@@ -24,14 +24,16 @@ export class AppComponent implements OnInit {
  constructor(public djangoService : DjangoService) {
 
     Observable.interval(2000*60).subscribe(x => {
-      this.djangoService.getEarthquake().subscribe(
+      this.djangoService.getEarthquakeHome().subscribe(
           (result) => {
+            this.e_data = [];
             this.p_data = [];
             var jsonData = JSON.parse(result["_body"]);
             for (var i = 0; i < jsonData.feeds.length; i++) {
                 var feed = jsonData.feeds[i];
 
                 this.e_data.push({mag : feed.magnitude, dep : feed.depth, lat : feed.latitude, lng : feed.longitude,epic : feed.epicenter,date : feed.date, tsu : feed.tsunami,near_lat : feed.near_lat, near_lng : feed.near_lng,distance : feed.distance, speed : feed.speed});
+                localStorage.setItem("store_data",JSON.stringify(this.e_data));
             }
             for (var i = 0; i < jsonData.records.length; i++) {
                 var record = jsonData.records[i];
@@ -46,7 +48,7 @@ export class AppComponent implements OnInit {
  }
 
  ngOnInit() {
-       this.djangoService.getEarthquake() .subscribe(
+       this.djangoService.getEarthquakeHome() .subscribe(
       (result) => {
             this.e_data = [];
             this.p_data = [];
@@ -59,7 +61,7 @@ export class AppComponent implements OnInit {
                 var record = jsonData.records[i];
                 this.p_data.push({mag : record.magnitude, dep : record.depth, lat : record.latitude, lng : record.longitude, tsu : record.tsunami});
             }
-            localStorage.setItem("store_data",JSON.stringify(this.e_data));
+            
           },
           (error) => {
             console.log("Error in AppComponent OnInit",error);

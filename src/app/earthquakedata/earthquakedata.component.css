@@ -7,6 +7,9 @@
 thead{
     color: white;        
 }
+tfoot{
+    color: white;
+}
 td{
     
     background: white;

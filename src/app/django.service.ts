@@ -10,6 +10,9 @@ export class DjangoService {
   getEarthquake(){    
     return this.http.get('http://localhost:8000/api/feeds/');
   }
+  getEarthquakeHome(){    
+    return this.http.get('http://localhost:8000/api/feeds/0/');
+  }
   sendPredict(magnitude, depth, latitude, longitude){
     var data = {"magnitude" : magnitude, "depth" : depth , "latitude": latitude, "longitude": longitude };
     let headers = new Headers({ 'Content-Type': 'application/json'});

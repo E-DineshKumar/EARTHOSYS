@@ -4,7 +4,7 @@
   </div>
   <div class="container">
     <!--Table-->
-                      <table class="table">
+                      <table class="table" id="earthquake_table">
 
                           <!--Table head-->
                           <thead class="mdb-color darken-3">
@@ -40,7 +40,31 @@
                               </tr>                          
                           </tbody>
                           <!--Table body-->
+                          <tfoot class="mdb-color darken-3">
+                            <tr class="text-white">
+                                <th>Magnitude</th>
+                                <th>Depth (km)</th>
+                                <th>Latitude</th>
+                                <th>Longitude</th>
+                                <th>Epicenter</th>
+                                <!--<th>Date and Time</th>-->
+                                <th>Tsunami</th>
+                                <th> Near Latitude</th>
+                                <th> Near Longitude</th>
+                                <th> Distance from Coast</th>
+                                <th>Speed</th>
+                            </tr>
+                        </tfoot>
                       </table>
                       <!--Table-->
   </div>
 </div>
+<script >
+    $('earthquake_table').DataTable ({
+        serverSide : true,
+        ajax : {
+            url:'https://localhost:8000/api/feeds/1/',
+            type:'GET'
+        }
+    })
+</script>
