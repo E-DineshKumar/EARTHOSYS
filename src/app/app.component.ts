@@ -31,7 +31,7 @@ export class AppComponent implements OnInit {
             for (var i = 0; i < jsonData.feeds.length; i++) {
                 var feed = jsonData.feeds[i];
 
-                this.e_data.push({mag : feed.magnitude, dep : feed.depth, lat : feed.latitude, lng : feed.longitude,epic : feed.epicenter,date : feed.date, tsu : feed.tsunami});
+                this.e_data.push({mag : feed.magnitude, dep : feed.depth, lat : feed.latitude, lng : feed.longitude,epic : feed.epicenter,date : feed.date, tsu : feed.tsunami,near_lat : feed.near_lat, near_lng : feed.near_lng,distance : feed.distance, speed : feed.speed});
             }
             for (var i = 0; i < jsonData.records.length; i++) {
                 var record = jsonData.records[i];
@@ -53,7 +53,7 @@ export class AppComponent implements OnInit {
             var jsonData = JSON.parse(result["_body"]);
             for (var i = 0; i < jsonData.feeds.length; i++) {
                 var feed = jsonData.feeds[i];
-                this.e_data.push({mag : feed.magnitude, dep : feed.depth, lat : feed.latitude, lng : feed.longitude,epic : feed.epicenter,date : feed.date, tsu : feed.tsunami});
+                this.e_data.push({mag : feed.magnitude, dep : feed.depth, lat : feed.latitude, lng : feed.longitude,epic : feed.epicenter,date : feed.date, tsu : feed.tsunami,near_lat : feed.near_lat, near_lng : feed.near_lng,distance : feed.distance, speed : feed.speed});
             }
             for (var i = 0; i < jsonData.records.length; i++) {
                 var record = jsonData.records[i];
@@ -121,7 +121,7 @@ public p_data : predict_data[] = [];
               this.p_data.push({mag : this.magnitude, dep : this.depth, lat : this.latitude, lng : this.longitude, tsu : this.tsunami});
              }
           },
-          (error) => {
+          (error) => {  
             console.log("Error in AppComponent onSendPredictor function",error);
           }
         );
@@ -145,6 +145,10 @@ interface earthquake_data {
   epic : number;
   date : String;
   tsu : boolean;
+  near_lat : number;
+  near_lng : number;
+  distance : number;
+  speed : String;
 }
 interface messages{
   message : String;

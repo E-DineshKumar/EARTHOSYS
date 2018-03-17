@@ -15,7 +15,11 @@
                                   <th>Longitude</th>
                                   <th>Epicenter</th>
                                   <!--<th>Date and Time</th>-->
-                                  <th>Tsunami</th>                                    
+                                  <th>Tsunami</th>
+                                  <th> Near Latitude</th>
+                                  <th> Near Longitude</th>
+                                  <th> Distance from Coast</th>
+                                  <th>Speed</th>
                               </tr>
                           </thead>
                           <!--Table head-->
@@ -29,6 +33,10 @@
                                   <td>{{ earthquake.epic }}</td>
                                   <!--<td>{{ earthquake.date }}</td>-->
                                   <td>{{ earthquake.tsu }}</td>
+                                  <td>{{ earthquake.near_lat }}</td>
+                                  <td>{{ earthquake.near_lng }}</td>
+                                  <td>{{earthquake.distance}}</td>
+                                  <td>{{earthquake.speed}}</td>
                               </tr>                          
                           </tbody>
                           <!--Table body-->

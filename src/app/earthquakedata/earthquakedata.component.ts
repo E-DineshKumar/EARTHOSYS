@@ -8,21 +8,21 @@ import { AppComponent} from './../app.component';
 })
 export class EarthquakedataComponent implements OnInit {
 
-  magnitude : number;
-  depth : number;
-  latitude : number;
-  longitude : number;
-  epicenter : number;
-  date : String;
-  tsunami : boolean;
-
+  // magnitude : number;
+  // depth : number;
+  // latitude : number;
+  // longitude : number;
+  // epicenter : number;
+  // date : String;
+  // tsunami : boolean;
+  // near_latitude : number;
+  // near_longitude : number;
+  // distance : number;
+  // speed : String;
+  e_data: earthquake_data[];
   constructor(public appComponent : AppComponent) { 
-    this.magnitude = 0;
-    this.depth = 0;
-    this.latitude = 0;
-    this.longitude = 0;
-    this.epicenter = 0;
-    this.date = "";
+    let a = localStorage.getItem("store_data");
+    this.e_data = JSON.parse(a);
     
   }
 
@@ -30,7 +30,7 @@ export class EarthquakedataComponent implements OnInit {
   ngOnInit() {
   }
 
-  e_data: earthquake_data[]= this.appComponent.e_data;
+ // e_data: earthquake_data[]= this.appComponent.e_data;
 
 
 }
@@ -42,4 +42,8 @@ interface earthquake_data {
   epic : number;
   date : String;
   tsu : boolean;
+  near_lat : number;
+  near_lng : number;
+  distance : number;
+  speed : String;
 }
