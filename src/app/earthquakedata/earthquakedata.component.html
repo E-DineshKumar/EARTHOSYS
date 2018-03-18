@@ -4,67 +4,59 @@
   </div>
   <div class="container">
     <!--Table-->
-                      <table class="table" id="earthquake_table">
-
-                          <!--Table head-->
-                          <thead class="mdb-color darken-3">
-                              <tr class="text-white">
-                                  <th>Magnitude</th>
-                                  <th>Depth (km)</th>
-                                  <th>Latitude</th>
-                                  <th>Longitude</th>
-                                  <th>Epicenter</th>
-                                  <!--<th>Date and Time</th>-->
-                                  <th>Tsunami</th>
-                                  <th> Near Latitude</th>
-                                  <th> Near Longitude</th>
-                                  <th> Distance from Coast</th>
-                                  <th>Speed</th>
-                              </tr>
-                          </thead>
-                          <!--Table head-->
-                          <!--Table body-->
-                          <tbody *ngFor= "let earthquake of e_data">
-                              <tr>                                    
-                                  <td>{{ earthquake.mag }}</td>                                
-                                  <td>{{ earthquake.dep }}</td>
-                                  <td>{{ earthquake.lat }}</td>
-                                  <td>{{ earthquake.lng }}</td>
-                                  <td>{{ earthquake.epic }}</td>
-                                  <!--<td>{{ earthquake.date }}</td>-->
-                                  <td>{{ earthquake.tsu }}</td>
-                                  <td>{{ earthquake.near_lat }}</td>
-                                  <td>{{ earthquake.near_lng }}</td>
-                                  <td>{{earthquake.distance}}</td>
-                                  <td>{{earthquake.speed}}</td>
-                              </tr>                          
-                          </tbody>
-                          <!--Table body-->
-                          <tfoot class="mdb-color darken-3">
-                            <tr class="text-white">
-                                <th>Magnitude</th>
-                                <th>Depth (km)</th>
-                                <th>Latitude</th>
-                                <th>Longitude</th>
-                                <th>Epicenter</th>
-                                <!--<th>Date and Time</th>-->
-                                <th>Tsunami</th>
-                                <th> Near Latitude</th>
-                                <th> Near Longitude</th>
-                                <th> Distance from Coast</th>
-                                <th>Speed</th>
-                            </tr>
-                        </tfoot>
-                      </table>
-                      <!--Table-->
+    <table class="table" id="earthquake_table">
+        <!--Table head-->
+        <thead class="mdb-color darken-3">
+            <tr class="text-white">
+                <th>Magnitude</th>
+                <th>Depth (km)</th>
+                <th>Latitude</th>
+                <th>Longitude</th>
+                <th>Epicenter</th>                
+                <th>Tsunami</th>
+                <th> Nearest Latitude</th>
+                <th> Nearest Longitude</th>
+                <th> Distance from Coast(km)</th>
+                <th> Location </th>
+                <th> Speed (km/hr)</th>
+            </tr>
+        </thead>
+        <!--Table head-->
+        <!--Table body-->
+        <tbody *ngFor= "let earthquake of e_data">
+            <tr>                                    
+                <td>{{ earthquake.mag }}</td>                                
+                <td>{{ earthquake.dep }}</td>
+                <td>{{ earthquake.lat }}</td>
+                <td>{{ earthquake.lng }}</td>
+                <td>{{ earthquake.epic }}</td>
+                <!--<td>{{ earthquake.date }}</td>-->
+                <td>{{ earthquake.tsu }}</td>
+                <td>{{ earthquake.near_lat }}</td>
+                <td>{{ earthquake.near_lng }}</td>
+                <td>{{ earthquake.distance }}</td>
+                <td>{{ earthquake.location }}</td>
+                <td>{{earthquake.speed}}</td>
+            </tr>                          
+        </tbody>
+        <!--Table body-->
+        <tfoot class="mdb-color darken-3">
+        <tr class="text-white">
+            <th>Magnitude</th>
+            <th>Depth (km)</th>
+            <th>Latitude</th>
+            <th>Longitude</th>
+            <th>Epicenter</th>
+            <!--<th>Date and Time</th>-->
+            <th>Tsunami</th>
+            <th> Nearest Latitude</th>
+            <th> Nearest Longitude</th>
+            <th> Distance from Coast (km)</th>
+            <th>Location</th>
+            <th>Speed (km/hr)</th>
+        </tr>
+    </tfoot>
+    </table>
+    <!--Table-->
   </div>
 </div>
-<script >
-    $('earthquake_table').DataTable ({
-        serverSide : true,
-        ajax : {
-            url:'https://localhost:8000/api/feeds/1/',
-            type:'GET'
-        }
-    })
-</script>

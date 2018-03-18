@@ -22,7 +22,8 @@ export class AppComponent implements OnInit {
   tsunami : boolean = false;
 
  constructor(public djangoService : DjangoService) {
-
+    console.log("AppComponent");
+    
     Observable.interval(2000*60).subscribe(x => {
       this.djangoService.getEarthquakeHome().subscribe(
           (result) => {
@@ -31,19 +32,32 @@ export class AppComponent implements OnInit {
             var jsonData = JSON.parse(result["_body"]);
             for (var i = 0; i < jsonData.feeds.length; i++) {
                 var feed = jsonData.feeds[i];
-
-                this.e_data.push({mag : feed.magnitude, dep : feed.depth, lat : feed.latitude, lng : feed.longitude,epic : feed.epicenter,date : feed.date, tsu : feed.tsunami,near_lat : feed.near_lat, near_lng : feed.near_lng,distance : feed.distance, speed : feed.speed});
+                this.e_data.push({mag : feed.magnitude, dep : feed.depth, lat : feed.latitude, lng : feed.longitude,epic : feed.epicenter,date : feed.date, tsu : feed.tsunami, near_lat : feed.nearest_lat, near_lng : feed.nearest_lng,distance : feed.distance, loc: feed.location, speed : feed.speed});
+                //console.log(feed.nearest_lat);
                 localStorage.setItem("store_data",JSON.stringify(this.e_data));
             }
             for (var i = 0; i < jsonData.records.length; i++) {
-                var record = jsonData.records[i];
-                this.p_data.push({mag : record.magnitude, dep : record.depth, lat : record.latitude, lng : record.longitude, tsu : record.tsunami});
+                var res = jsonData.records[i];
+                this.p_data.push({mag : res.magnitude, dep : res.depth, lat : res.latitude, lng : res.longitude, tsu : res.tsunami,near_lat : res.nearest_lat,near_lng : res.nearest_lng,distance : res.distance,loc : res.location,speed : res.speed,date : res.date});
             }
           },
           (error) => {
             console.log("Error in AppComponent getEarthquake function ",error);
           }
         );
+        this.djangoService.getEarthquake() .subscribe(
+          (result) => {            
+                var jsonData = JSON.parse(result["_body"]);
+                for (var i = 0; i < jsonData.feeds.length; i++) {
+                    var feed = jsonData.feeds[i];
+                    this.e_data.push({mag : feed.magnitude, dep : feed.depth, lat : feed.latitude, lng : feed.longitude,epic : feed.epicenter,date : feed.date, tsu : feed.tsunami,near_lat : feed.near_lat, near_lng : feed.near_lng,distance : feed.distance,loc:feed.location, speed : feed.speed});
+                    localStorage.setItem("map_data",JSON.stringify(this.e_data));
+                }                  
+              },
+              (error) => {
+                console.log("Error in AppComponent OnInit",error);
+              }
+            );
     });
  }
 
@@ -55,11 +69,13 @@ export class AppComponent implements OnInit {
             var jsonData = JSON.parse(result["_body"]);
             for (var i = 0; i < jsonData.feeds.length; i++) {
                 var feed = jsonData.feeds[i];
-                this.e_data.push({mag : feed.magnitude, dep : feed.depth, lat : feed.latitude, lng : feed.longitude,epic : feed.epicenter,date : feed.date, tsu : feed.tsunami,near_lat : feed.near_lat, near_lng : feed.near_lng,distance : feed.distance, speed : feed.speed});
+                this.e_data.push({mag : feed.magnitude, dep : feed.depth, lat : feed.latitude, lng : feed.longitude,epic : feed.epicenter,date : feed.date, tsu : feed.tsunami, near_lat : feed.nearest_lat, near_lng : feed.nearest_lng,distance : feed.distance, loc : feed.location, speed : feed.speed});
+                //console.log(feed.nearest_lat);
+                
             }
             for (var i = 0; i < jsonData.records.length; i++) {
-                var record = jsonData.records[i];
-                this.p_data.push({mag : record.magnitude, dep : record.depth, lat : record.latitude, lng : record.longitude, tsu : record.tsunami});
+                var res = jsonData.records[i];
+                this.p_data.push({mag : res.magnitude, dep : res.depth, lat : res.latitude, lng : this.longitude, tsu : this.tsunami,near_lat : res.nearest_lat,near_lng : res.nearest_lng,distance : res.distance,loc : res.location,speed : res.speed,date : res.date});
             }
             
           },
@@ -119,8 +135,9 @@ public p_data : predict_data[] = [];
           this.djangoService.sendPredict(this.magnitude, this.depth, this.latitude, this.longitude).subscribe(
           (result) => {
              if(JSON.parse(result["_body"])["status"]=="success"){
+               var res = JSON.parse(result["_body"]);
                this.tsunami = JSON.parse(result["_body"])["result"];
-              this.p_data.push({mag : this.magnitude, dep : this.depth, lat : this.latitude, lng : this.longitude, tsu : this.tsunami});
+             this.p_data.push({mag : res.magnitude, dep : res.depth, lat : res.latitude, lng : res.longitude, tsu : res.tsunami,near_lat : res.nearest_lat,near_lng : res.nearest_lng,distance : res.distance,loc : res.location,speed : res.speed,date : res.date});
              }
           },
           (error) => {  
@@ -137,7 +154,13 @@ interface predict_data {
   dep : number;
 	lat : number;
 	lng : number;
+  date : String;
   tsu : boolean;
+  near_lat : number;
+  near_lng : number;
+  distance : number;
+  loc : String;
+  speed : String;
 }
 interface earthquake_data {
   mag : number;
@@ -150,6 +173,7 @@ interface earthquake_data {
   near_lat : number;
   near_lng : number;
   distance : number;
+  loc : String;
   speed : String;
 }
 interface messages{

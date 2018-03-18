@@ -2,7 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { AppComponent} from './../app.component';
 import { DjangoService } from './../django.service';
 import { Observable } from 'rxjs/Rx';
-
+declare var jquery:any;
+declare var $ :any;
 
 @Component({
   selector: 'app-earthquakedata',
@@ -31,7 +32,8 @@ export class EarthquakedataComponent implements OnInit {
             var jsonData = JSON.parse(result["_body"]);
             for (var i = 0; i < jsonData.feeds.length; i++) {
                 var feed = jsonData.feeds[i];
-                this.e_data.push({mag : feed.magnitude, dep : feed.depth, lat : feed.latitude, lng : feed.longitude,epic : feed.epicenter,date : feed.date, tsu : feed.tsunami,near_lat : feed.near_lat, near_lng : feed.near_lng,distance : feed.distance, speed : feed.speed});
+                this.e_data.push({mag : feed.magnitude, dep : feed.depth, lat : feed.latitude, lng : feed.longitude,epic : feed.epicenter,date : feed.date, tsu : feed.tsunami,near_lat : feed.near_lat, near_lng : feed.near_lng,distance : feed.distance,loc:feed.location, speed : feed.speed});
+                localStorage.setItem("map_data",JSON.stringify(this.e_data));
             }                  
           },
           (error) => {
@@ -42,9 +44,17 @@ export class EarthquakedataComponent implements OnInit {
 
 
   ngOnInit() {
-    
+    this.callPagination();
   }
-
+callPagination(){
+  $('earthquake_table').DataTable ({
+    serverSide:true,
+    ajax : {
+        url:'https://localhost:8000/api/feeds/1/',
+        type:'GET'
+    }
+})
+}
  
 //  var a = localStorage.getItem("store_data");
 //  this.e_data = JSON.parse(a);
@@ -62,5 +72,6 @@ interface earthquake_data {
   near_lat : number;
   near_lng : number;
   distance : number;
+  loc : String;
   speed : String;
 }

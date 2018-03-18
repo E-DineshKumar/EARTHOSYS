@@ -8,7 +8,7 @@ export class DjangoService {
   constructor(public http : Http) { }
 
   getEarthquake(){    
-    return this.http.get('http://localhost:8000/api/feeds/');
+    return this.http.get('http://localhost:8000/api/feeds/1/');
   }
   getEarthquakeHome(){    
     return this.http.get('http://localhost:8000/api/feeds/0/');

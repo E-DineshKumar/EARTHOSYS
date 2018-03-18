@@ -441,3 +441,8 @@ th{
     padding-left: 10px;
 
 }
+table{
+  display: block;
+  overflow-x: auto;
+  white-space: nowrap;
+}

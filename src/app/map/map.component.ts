@@ -17,7 +17,7 @@ export class MapComponent implements OnInit {
   lat: number= 0.0;
   lng: number = 0.0;
   constructor(public djangoService : DjangoService ) {
-     let a = localStorage.getItem("store_data");
+    let a = localStorage.getItem("store_data");
     this.markers = JSON.parse(a);
     this.lat = this.markers[0].lat;
     this.lng = this.markers[0].lng;
@@ -30,7 +30,7 @@ export class MapComponent implements OnInit {
             var jsonData = JSON.parse(result["_body"]);
             for (var i = 0; i < jsonData.feeds.length; i++) {
                 var feed = jsonData.feeds[i];
-                this.markers.push({mag : feed.magnitude, dep : feed.depth, lat : feed.latitude, lng : feed.longitude,epic : feed.epicenter,date : feed.date, tsu : feed.tsunami,near_lat : feed.near_lat, near_lng : feed.near_lng,distance : feed.distance, speed : feed.speed});
+                this.markers.push({mag : feed.magnitude, dep : feed.depth, lat : feed.latitude, lng : feed.longitude,epic : feed.epicenter,date : feed.date, tsu : feed.tsunami,near_lat : feed.nearest_lat, near_lng : feed.nearest_lng,distance : feed.distance, loc : feed.location, speed : feed.speed});
             }
 
           },
@@ -57,5 +57,6 @@ interface earthquake_data {
   near_lat : number;
   near_lng : number;
   distance : number;
+  loc : String;
   speed : String;
 }

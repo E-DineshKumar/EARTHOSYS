@@ -59,4 +59,8 @@
            font-size: 30px;
            padding-left: 20px;
        }
-      
+       table{
+           display: block;
+           overflow-x: auto;
+           white-space: nowrap;
+       }

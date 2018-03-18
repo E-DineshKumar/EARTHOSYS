@@ -139,7 +139,12 @@
                                 <th>Depth (km)</th>
                                 <th>Latitude</th>
                                 <th>Longitude</th>
-                                <th>Tsunami</th>
+                                <th>Tsunami</th>                                
+                                <th>Nearest Latitude</th>
+                                <th>Nearest Longitude</th>
+                                <th>Location</th>
+                                <th>Speed(km/hr)</th>
+                                <th>Distance(km)</th>
                             </tr>
                         </thead>
                         <!--Table head-->
@@ -150,7 +155,12 @@
                                 <td>{{ earthquake.dep }}</td>
                                 <td>{{ earthquake.lat }}</td>
                                 <td>{{ earthquake.lng }}</td>
-                                <td>{{ earthquake.tsu }}</td>
+                                <td>{{ earthquake.tsu }}</td>                               
+                                <td>{{ earthquake.near_lat }}</td>
+                                <td>{{ earthquake.near_lng }}</td>
+                                <td>{{ earthquake.loc }}</td>
+                                <td>{{ earthquake.speed }}</td>
+                                <td>{{ earthquake.distance }}</td>
                             </tr>
                         </tbody>
                         <!--Table body-->
