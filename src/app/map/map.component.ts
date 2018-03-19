@@ -24,20 +24,20 @@ export class MapComponent implements OnInit {
   }
 
   ngOnInit() {
-      this.djangoService.getEarthquake() .subscribe(
-      (result) => {
-            this.markers = [];
-            var jsonData = JSON.parse(result["_body"]);
-            for (var i = 0; i < jsonData.feeds.length; i++) {
-                var feed = jsonData.feeds[i];
-                this.markers.push({mag : feed.magnitude, dep : feed.depth, lat : feed.latitude, lng : feed.longitude,epic : feed.epicenter,date : feed.date, tsu : feed.tsunami,near_lat : feed.nearest_lat, near_lng : feed.nearest_lng,distance : feed.distance, loc : feed.location, speed : feed.speed});
-            }
+      // this.djangoService.getEarthquake() .subscribe(
+      // (result) => {
+      //       this.markers = [];
+      //       var jsonData = JSON.parse(result["_body"]);
+      //       for (var i = 0; i < jsonData.feeds.length; i++) {
+      //           var feed = jsonData.feeds[i];
+      //           this.markers.push({mag : feed.magnitude, dep : feed.depth, lat : feed.latitude, lng : feed.longitude,epic : feed.epicenter,date : feed.date, tsu : feed.tsunami,near_lat : feed.nearest_lat, near_lng : feed.nearest_lng,distance : feed.distance, loc : feed.location, speed : feed.speed});
+      //       }
 
-          },
-          (error) => {
-            console.log("Error in MapComponent ",error);
-          }
-        );
+      //     },
+      //     (error) => {
+      //       console.log("Error in MapComponent ",error);
+      //     }
+      //   );
   }
 
 

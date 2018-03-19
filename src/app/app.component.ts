@@ -45,19 +45,19 @@ export class AppComponent implements OnInit {
             console.log("Error in AppComponent getEarthquake function ",error);
           }
         );
-        this.djangoService.getEarthquake() .subscribe(
-          (result) => {            
-                var jsonData = JSON.parse(result["_body"]);
-                for (var i = 0; i < jsonData.feeds.length; i++) {
-                    var feed = jsonData.feeds[i];
-                    this.e_data.push({mag : feed.magnitude, dep : feed.depth, lat : feed.latitude, lng : feed.longitude,epic : feed.epicenter,date : feed.date, tsu : feed.tsunami,near_lat : feed.near_lat, near_lng : feed.near_lng,distance : feed.distance,loc:feed.location, speed : feed.speed});
-                    localStorage.setItem("map_data",JSON.stringify(this.e_data));
-                }                  
-              },
-              (error) => {
-                console.log("Error in AppComponent OnInit",error);
-              }
-            );
+        // this.djangoService.getEarthquake() .subscribe(
+        //   (result) => {            
+        //         var jsonData = JSON.parse(result["_body"]);
+        //         for (var i = 0; i < jsonData.feeds.length; i++) {
+        //             var feed = jsonData.feeds[i];
+        //             this.e_data.push({mag : feed.magnitude, dep : feed.depth, lat : feed.latitude, lng : feed.longitude,epic : feed.epicenter,date : feed.date, tsu : feed.tsunami,near_lat : feed.near_lat, near_lng : feed.near_lng,distance : feed.distance,loc:feed.location, speed : feed.speed});
+        //             localStorage.setItem("map_data",JSON.stringify(this.e_data));
+        //         }                  
+        //       },
+        //       (error) => {
+        //         console.log("Error in AppComponent OnInit",error);
+        //       }
+        //     );
     });
  }
 

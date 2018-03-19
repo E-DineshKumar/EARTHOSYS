@@ -2,8 +2,11 @@ import { Component, OnInit } from '@angular/core';
 import { AppComponent} from './../app.component';
 import { DjangoService } from './../django.service';
 import { Observable } from 'rxjs/Rx';
-declare var jquery:any;
-declare var $ :any;
+
+declare var require: any;
+var $ = require('jquery');
+var dt = require('datatables.net');
+
 
 @Component({
   selector: 'app-earthquakedata',
@@ -27,25 +30,34 @@ export class EarthquakedataComponent implements OnInit {
   e_data: earthquake_data[]
   constructor(public appComponent : AppComponent,private djangoService : DjangoService) { 
    
-    this.djangoService.getEarthquake() .subscribe(
-      (result) => {            
-            var jsonData = JSON.parse(result["_body"]);
-            for (var i = 0; i < jsonData.feeds.length; i++) {
-                var feed = jsonData.feeds[i];
-                this.e_data.push({mag : feed.magnitude, dep : feed.depth, lat : feed.latitude, lng : feed.longitude,epic : feed.epicenter,date : feed.date, tsu : feed.tsunami,near_lat : feed.near_lat, near_lng : feed.near_lng,distance : feed.distance,loc:feed.location, speed : feed.speed});
-                localStorage.setItem("map_data",JSON.stringify(this.e_data));
-            }                  
-          },
-          (error) => {
-            console.log("Error in AppComponent OnInit",error);
-          }
-        );
+    // this.djangoService.getEarthquake() .subscribe(
+    //   (result) => {            
+    //         var jsonData = JSON.parse(result["_body"]);
+    //         for (var i = 0; i < jsonData.feeds.length; i++) {
+    //             var feed = jsonData.feeds[i];
+    //             this.e_data.push({mag : feed.magnitude, dep : feed.depth, lat : feed.latitude, lng : feed.longitude,epic : feed.epicenter,date : feed.date, tsu : feed.tsunami,near_lat : feed.near_lat, near_lng : feed.near_lng,distance : feed.distance,loc:feed.location, speed : feed.speed});
+    //             localStorage.setItem("map_data",JSON.stringify(this.e_data));
+    //         }                  
+    //       },
+    //       (error) => {
+    //         console.log("Error in AppComponent OnInit",error);
+    //       }
+    //     );
   }
 
 
   ngOnInit() {
-    this.callPagination();
+    //this.callPagination();
+    $('table').DataTable ({
+      // serverSide:true,
+      // ajax : {
+      //     url:'https://localhost:8000/api/feeds/1/',
+      //     type:'GET'
+      // }
+  });
+  
   }
+
 callPagination(){
   $('earthquake_table').DataTable ({
     serverSide:true,
