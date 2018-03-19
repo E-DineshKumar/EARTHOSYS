@@ -49,11 +49,11 @@ export class EarthquakedataComponent implements OnInit {
   ngOnInit() {
     //this.callPagination();
     $('table').DataTable ({
-      // serverSide:true,
-      // ajax : {
-      //     url:'https://localhost:8000/api/feeds/1/',
-      //     type:'GET'
-      // }
+      serverSide:true,
+      ajax : {
+          url:'http://localhost:8000/api/feeds/1/',
+          type:'GET'
+      }
   });
   
   }
