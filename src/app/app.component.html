@@ -6,7 +6,7 @@
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
       </button>
-      <a  style ="font-size:200%"class="navbar-brand " href="#">EARTHOSYS</a>
+      <a  style ="font-size:200%"class="navbar-brand " routerLink="/home" routerLinkActive="active">EARTHOSYS</a>
     </div>
     <div class="collapse navbar-collapse" id="myNavbar">
       <ul class="nav navbar-nav navbar-right">
@@ -30,7 +30,7 @@
                 <i class="fa fa-comments-o"></i>
                 <span class="count"></span>
             </span>
-            <span class="title">Messenger</span>
+            <span class="title">AI agent</span>
             <span class="create-new">
               <a  (click) = "onClickFab()" class="close">
                 <i  class="material-icons">expand_more</i>
@@ -167,6 +167,9 @@
                     </table>
                     <!--Table-->
                           <div class="infomation">
+                            <div class="predict-message">                                 
+                                {{predict_message}}
+                            </div>                         
                             <p>*True - The Earthquake Data may generate Tsunami waves</p>
                             <p>*False - The Earthquake Data won't generate Tsunami waves</p>
                           </div>

@@ -17,11 +17,9 @@ thead{
 tfoot{
     color: white;
 }
-td{
-    
-    background: white;
-    font-size:14px;
-    text-transform: capitalize;
+table.dataTable td{
+    font-weight: 600;
+    font-size: small;
 }
 th{
     font-size: 13px;
@@ -29,6 +27,7 @@ th{
 label{
     display: inline;
     font-weight: 500;
+    
 
 }
 input{
@@ -37,4 +36,5 @@ input{
 }
 .feed_container{
     margin-top: 25px;
+    overflow: auto;
 }

@@ -20,10 +20,9 @@ export class AppComponent implements OnInit {
   latitude : number;
   longitude : number;
   tsunami : boolean = false;
-
+  predict_message : String;
  constructor(public djangoService : DjangoService) {
-    console.log("AppComponent");
-    
+    this.predict_message = "";
     Observable.interval(2000*60).subscribe(x => {
       this.djangoService.getEarthquakeHome().subscribe(
           (result) => {
@@ -45,19 +44,7 @@ export class AppComponent implements OnInit {
             console.log("Error in AppComponent getEarthquake function ",error);
           }
         );
-        // this.djangoService.getEarthquake() .subscribe(
-        //   (result) => {            
-        //         var jsonData = JSON.parse(result["_body"]);
-        //         for (var i = 0; i < jsonData.feeds.length; i++) {
-        //             var feed = jsonData.feeds[i];
-        //             this.e_data.push({mag : feed.magnitude, dep : feed.depth, lat : feed.latitude, lng : feed.longitude,epic : feed.epicenter,date : feed.date, tsu : feed.tsunami,near_lat : feed.near_lat, near_lng : feed.near_lng,distance : feed.distance,loc:feed.location, speed : feed.speed});
-        //             localStorage.setItem("map_data",JSON.stringify(this.e_data));
-        //         }                  
-        //       },
-        //       (error) => {
-        //         console.log("Error in AppComponent OnInit",error);
-        //       }
-        //     );
+  
     });
  }
 
@@ -69,13 +56,11 @@ export class AppComponent implements OnInit {
             var jsonData = JSON.parse(result["_body"]);
             for (var i = 0; i < jsonData.feeds.length; i++) {
                 var feed = jsonData.feeds[i];
-                this.e_data.push({mag : feed.magnitude, dep : feed.depth, lat : feed.latitude, lng : feed.longitude,epic : feed.epicenter,date : feed.date, tsu : feed.tsunami, near_lat : feed.nearest_lat, near_lng : feed.nearest_lng,distance : feed.distance, loc : feed.location, speed : feed.speed});
-                //console.log(feed.nearest_lat);
-                
+                this.e_data.push({mag : feed.magnitude, dep : feed.depth, lat : feed.latitude, lng : feed.longitude,epic : feed.epicenter,date : feed.date, tsu : feed.tsunami, near_lat : feed.nearest_lat, near_lng : feed.nearest_lng,distance : feed.distance, loc : feed.location, speed : feed.speed});                
             }
             for (var i = 0; i < jsonData.records.length; i++) {
                 var res = jsonData.records[i];
-                this.p_data.push({mag : res.magnitude, dep : res.depth, lat : res.latitude, lng : this.longitude, tsu : this.tsunami,near_lat : res.nearest_lat,near_lng : res.nearest_lng,distance : res.distance,loc : res.location,speed : res.speed,date : res.date});
+                this.p_data.push({mag : res.magnitude, dep : res.depth, lat : res.latitude, lng : res.longitude, tsu : res.tsunami,near_lat : res.nearest_lat,near_lng : res.nearest_lng,distance : res.distance,loc : res.location,speed : res.speed,date : res.date});
             }
             
           },
@@ -129,15 +114,24 @@ public p_data : predict_data[] = [];
     }
   }
   onSendPredictor(){
-
+    
     if((typeof this.magnitude !='undefined' && typeof this.depth !='undefined' && typeof this.latitude !='undefined' && typeof this.longitude !='undefined'))
     {
+      
+      var predict = new Howl({
+        src: ['./../assets/predict.mp3']
+      });
+      predict.play();
           this.djangoService.sendPredict(this.magnitude, this.depth, this.latitude, this.longitude).subscribe(
           (result) => {
              if(JSON.parse(result["_body"])["status"]=="success"){
                var res = JSON.parse(result["_body"]);
-               this.tsunami = JSON.parse(result["_body"])["result"];
-             this.p_data.push({mag : res.magnitude, dep : res.depth, lat : res.latitude, lng : res.longitude, tsu : res.tsunami,near_lat : res.nearest_lat,near_lng : res.nearest_lng,distance : res.distance,loc : res.location,speed : res.speed,date : res.date});
+               this.tsunami = res["result"];
+              //this.p_data.push({mag : res.magnitude, dep : res.depth, lat : res.latitude, lng : res.longitude, tsu : res.tsunami,near_lat : res.nearest_lat,near_lng : res.nearest_lng,distance : res.distance,loc : res.location,speed : res.speed,date : res.date});
+               this.predict_message ="Message : "+res["description"];              
+              setTimeout(() => {
+                this.predict_message = "";
+              }, 7000);
              }
           },
           (error) => {  

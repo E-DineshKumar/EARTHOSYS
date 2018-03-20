@@ -439,10 +439,18 @@ th{
     font-size: 12px;
     font-weight: 500;
     padding-left: 10px;
-
+  
 }
 table{
   display: block;
   overflow-x: auto;
   white-space: nowrap;
+}
+.predict-message{
+  margin-top:10px;
+  margin-bottom:10px;
+  font-weight: 600;
+  color: #1A237E;
+  font-size: 15px;
+
 }
