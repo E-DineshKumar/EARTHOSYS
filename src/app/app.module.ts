@@ -14,7 +14,8 @@ import { EarthquakedataComponent } from './earthquakedata/earthquakedata.compone
 import { AboutComponent } from './about/about.component';
 import { SourcesComponent } from './sources/sources.component';
 import { ContactComponent } from './contact/contact.component';
-
+import { DataTablesModule } from 'angular-datatables';
+import { HttpClient, HttpHandler, HttpClientModule } from '@angular/common/http';
 
 const appRoutes: Routes = [
   { path: 'home', component: HomeComponent },
@@ -46,7 +47,9 @@ const appRoutes: Routes = [
     ),
     BrowserModule,
     FormsModule,
+    DataTablesModule,
     HttpModule,
+    HttpClientModule,
     NgbModule.forRoot(),
     AgmCoreModule.forRoot({
       apiKey: 'AIzaSyCo-UQRP3Eapowr1mvUSdzxIZSyIPdB_-I'

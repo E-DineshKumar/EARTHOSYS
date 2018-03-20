@@ -1,10 +1,27 @@
 <div class="body">
   <div class="container">
-    <app-map></app-map>
+    <div id="map">
+        <agm-map  [latitude]="lat" [longitude]="lng">
+            <agm-marker 
+                *ngFor="let m of e_data;"
+                [latitude]="m.latitude"
+                [longitude]="m.longitude">
+                <agm-info-window>{{m.tsunami}}</agm-info-window>
+            </agm-marker>
+            <!--<agm-circle *ngFor="let m of markers;"
+                [latitude]="m.lat" [longitude]="m.lng" 
+                [radius]="5000"
+                [fillColor]="'red'"
+                [circleDraggable]="false"
+                [editable]="false">
+            </agm-circle>-->
+        </agm-map>
+    </div>
   </div>
-  <div class="container">
+
+  <div class="container feed_container">
     <!--Table-->
-    <table class="table" id="earthquake_table">
+    <table style = "font-size:14px;"datatable [dtOptions]="dtOptions" class="row-border hover">
         <!--Table head-->
         <thead class="mdb-color darken-3">
             <tr class="text-white">
@@ -23,21 +40,7 @@
         </thead>
         <!--Table head-->
         <!--Table body-->
-        <tbody *ngFor= "let earthquake of e_data">
-            <tr >                                    
-                <td>{{ earthquake.mag }}</td>                                
-                <td>{{ earthquake.dep }}</td>
-                <td>{{ earthquake.lat }}</td>
-                <td>{{ earthquake.lng }}</td>
-                <td>{{ earthquake.epic }}</td>                
-                <td>{{ earthquake.tsu }}</td>
-                <td>{{ earthquake.near_lat }}</td>
-                <td>{{ earthquake.near_lng }}</td>
-                <td>{{ earthquake.distance }}</td>
-                <td>{{ earthquake.location }}</td>
-                <td>{{ earthquake.speed }}</td>
-            </tr>                          
-        </tbody>
+    
         <!--Table body-->        
     </table>
     <!--Table-->

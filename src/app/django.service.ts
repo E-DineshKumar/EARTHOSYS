@@ -11,7 +11,7 @@ export class DjangoService {
     return this.http.get('http://localhost:8000/api/feeds/1/');
   }
   getEarthquakeHome(){    
-    return this.http.get('http://localhost:8000/api/feeds/0/');
+    return this.http.get('http://localhost:8000/api/feeds/');
   }
   sendPredict(magnitude, depth, latitude, longitude){
     var data = {"magnitude" : magnitude, "depth" : depth , "latitude": latitude, "longitude": longitude };

@@ -1,12 +1,10 @@
-import { Component, OnInit } from '@angular/core';
-import { AppComponent} from './../app.component';
-import { DjangoService } from './../django.service';
-import { Observable } from 'rxjs/Rx';
+import { Component, Inject, OnInit } from '@angular/core';
+import { Http } from '@angular/http';
+import { HttpClient, HttpResponse } from '@angular/common/http';
 
-declare var require: any;
-var $ = require('jquery');
-var dt = require('datatables.net');
+import 'rxjs/add/operator/toPromise';
 
+var object;
 
 @Component({
   selector: 'app-earthquakedata',
@@ -14,64 +12,52 @@ var dt = require('datatables.net');
   styleUrls: ['./earthquakedata.component.css']
 })
 export class EarthquakedataComponent implements OnInit {
-
-  // magnitude : number;
-  // depth : number;
-  // latitude : number;
-  // longitude : number;
-  // epicenter : number;
-  // date : String;
-  // tsunami : boolean;
-  // near_latitude : number;
-  // near_longitude : number;
-  // distance : number;
-  // speed : String;
-  //e_data: earthquake_data[];
-  e_data: earthquake_data[]
-  constructor(public appComponent : AppComponent,private djangoService : DjangoService) { 
-   
-    // this.djangoService.getEarthquake() .subscribe(
-    //   (result) => {            
-    //         var jsonData = JSON.parse(result["_body"]);
-    //         for (var i = 0; i < jsonData.feeds.length; i++) {
-    //             var feed = jsonData.feeds[i];
-    //             this.e_data.push({mag : feed.magnitude, dep : feed.depth, lat : feed.latitude, lng : feed.longitude,epic : feed.epicenter,date : feed.date, tsu : feed.tsunami,near_lat : feed.near_lat, near_lng : feed.near_lng,distance : feed.distance,loc:feed.location, speed : feed.speed});
-    //             localStorage.setItem("map_data",JSON.stringify(this.e_data));
-    //         }                  
-    //       },
-    //       (error) => {
-    //         console.log("Error in AppComponent OnInit",error);
-    //       }
-    //     );
+  dtOptions: DataTables.Settings = {};
+  e_data : earthquake_data[] = [];
+  lat: number= 0.0;
+  lng: number = 0.0;
+  constructor(private http: HttpClient) {
+    
   }
 
+  ngOnInit(): void {
+    const that = this;
 
-  ngOnInit() {
-    //this.callPagination();
-    $('table').DataTable ({
-      serverSide:true,
-      ajax : {
-          url:'http://localhost:8000/api/feeds/1/',
-          type:'GET'
-      }
-  });
-  
+    this.dtOptions = {
+      serverSide: true,
+      processing: true,
+      ajax: (dataTablesParameters: any, callback) => {
+        that.http
+          .post<DataTablesResponse>(
+            'http://localhost:8000/api/feeds/',
+            dataTablesParameters, {}
+          ).subscribe(resp => {
+            that.e_data = resp.data
+            this.lat = this.e_data[0]["latitude"];
+            this.lng = this.e_data[0]["longitude"];
+            callback({
+              draw: resp.draw,
+              recordsTotal: resp.recordsTotal,
+              recordsFiltered: resp.recordsFiltered,
+              data: resp.data
+            });
+          });
+      },
+      columns : [
+        {"data" : "magnitude"},
+        {"data" : "depth"},
+        {"data" : "latitude"},
+        {"data" : "longitude"},
+        {"data" : "epicenter"},
+        {"data" : "tsunami"},
+        {"data" : "nearest_lat"},
+        {"data" : "nearest_lng"},
+        {"data" : "distance"},
+        {"data" : "location"},
+        {"data" : "speed"}
+      ]
+    };
   }
-
-callPagination(){
-  $('earthquake_table').DataTable ({
-    serverSide:true,
-    ajax : {
-        url:'https://localhost:8000/api/feeds/1/',
-        type:'GET'
-    }
-})
-}
- 
-//  var a = localStorage.getItem("store_data");
-//  this.e_data = JSON.parse(a);
-
-
 }
 interface earthquake_data {
   mag : number;
@@ -86,4 +72,10 @@ interface earthquake_data {
   distance : number;
   loc : String;
   speed : String;
+}
+class DataTablesResponse {
+  data: any[];
+  draw: number;
+  recordsFiltered: number;
+  recordsTotal: number;
 }

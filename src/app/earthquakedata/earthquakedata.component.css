@@ -4,6 +4,13 @@
     background-size: cover;   
     height: 100vh;
 }*/
+
+agm-map {
+    height: 400px;
+  }
+  #map{
+    margin-top: 6%;
+  }
 thead{
     color: white;        
 }
@@ -27,4 +34,7 @@ label{
 input{
     display: inline;
     
+}
+.feed_container{
+    margin-top: 25px;
 }
