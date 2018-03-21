@@ -1,0 +1,36 @@
+.about{
+    margin-top: 3%;
+}
+.img-container {
+    position: relative;
+    text-align: center;
+    color: white;
+    
+}
+
+.heading{
+    font-size: 46px;
+}
+.sub-heading{
+    font-size: 28px;
+}
+.centered {
+    padding: 15px 30px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: rgba(0, 0, 0, 0.7);
+    text-shadow: rgba(0, 0, 0, .8);
+    
+}
+.content{
+    text-align: justify;
+    margin-top:20px;
+}
+.modules{
+    text-align: center;
+}
+.module-content{
+    text-align: justify
+}
