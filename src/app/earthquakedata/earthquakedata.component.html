@@ -8,20 +8,14 @@
                 [longitude]="m.longitude">
                 <agm-info-window>{{m.tsunami}}</agm-info-window>
             </agm-marker>
-            <!--<agm-circle *ngFor="let m of markers;"
-                [latitude]="m.lat" [longitude]="m.lng" 
-                [radius]="5000"
-                [fillColor]="'red'"
-                [circleDraggable]="false"
-                [editable]="false">
-            </agm-circle>-->
+            
         </agm-map>
     </div>
   </div>
 
   <div class="container feed_container">
     <!--Table-->
-    <table style = "font-size:14px;"datatable [dtOptions]="dtOptions" class="row-border hover">
+    <table datatable [dtOptions]="dtOptions" class="row-border hover" id="input">
         <!--Table head-->
         <thead class="mdb-color darken-3">
             <tr class="text-white">
@@ -38,9 +32,22 @@
                 <th> Speed (km/hr)</th>
             </tr>
         </thead>
-        <tbody style="font-size: 16px;"></tbody>
-        <!--Table head-->
-        <!--Table body-->
+       
+        <tfoot>
+            <tr>
+              <th><input type="text" placeholder="Magnitude" name="magnitude"/></th>
+              <th><input type="text" placeholder="Depth" name="depth"/></th>
+              <th><input type="text" placeholder="Latitude" name="latitude"/></th>
+              <th><input type="text" placeholder="Longitude" name="longitude"/></th>
+              <th><input type="text" placeholder="Epicenter" name="epicenter"/></th>
+              <th><input type="text" placeholder="Tsunami" name="tsunami"/></th>
+              <th><input type="text" placeholder="Nearest Latitude" name="nearest-latitude"/></th>
+              <th><input type="text" placeholder="Nearest Longitude" name="nearest-longitude"/></th>
+              <th><input type="text" placeholder="Distance" name="distance"/></th>
+              <th><input type="text" placeholder="Location" name="location"/></th>
+              <th><input type="text" placeholder="Speed" name="speed"/></th>            
+            </tr>
+          </tfoot>
     
         <!--Table body-->        
     </table>

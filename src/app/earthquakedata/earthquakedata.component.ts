@@ -1,6 +1,7 @@
-import { Component, Inject, OnInit } from '@angular/core';
+import { AfterViewInit, Component, OnInit, ViewChild } from '@angular/core';
 import { Http } from '@angular/http';
 import { HttpClient, HttpResponse } from '@angular/common/http';
+import { DataTableDirective } from 'angular-datatables';
 
 import 'rxjs/add/operator/toPromise';
 
@@ -12,10 +13,13 @@ var object;
   styleUrls: ['./earthquakedata.component.css']
 })
 export class EarthquakedataComponent implements OnInit {
-  dtOptions: DataTables.Settings = {};
+  
   e_data : earthquake_data[] = [];
   lat: number= 0.0;
   lng: number = 0.0;
+  @ViewChild(DataTableDirective)
+  datatableElement: DataTableDirective;
+  dtOptions: DataTables.Settings = {};
   constructor(private http: HttpClient) {
     
   }
@@ -43,20 +47,106 @@ export class EarthquakedataComponent implements OnInit {
             });
           });
       },
-      columns : [
-        {"data" : "magnitude"},
-        {"data" : "depth"},
-        {"data" : "latitude"},
-        {"data" : "longitude"},
-        {"data" : "epicenter"},
-        {"data" : "tsunami"},
-        {"data" : "nearest_lat"},
-        {"data" : "nearest_lng"},
-        {"data" : "distance"},
-        {"data" : "location"},
-        {"data" : "speed"}
-      ]
+      // columns : [
+      //   {"data" : "magnitude"},
+      //   {"data" : "depth"},
+      //   {"data" : "latitude"},
+      //   {"data" : "longitude"},
+      //   {"data" : "epicenter"},
+      //   {"data" : "tsunami"},
+      //   {"data" : "nearest_lat"},
+      //   {"data" : "nearest_lng"},
+      //   {"data" : "distance"},
+      //   {"data" : "location"},
+      //   {"data" : "speed"}
+      // ]
+      
+                columns: [{
+            title: 'Magnitude',
+            data: 'magnitude'
+          }, {
+            title: 'Depth',
+            data: 'depth'
+          }, {
+            title: 'Latitude',
+            data: 'latitude'
+          },{
+            title: 'Longitude',
+            data: 'longitude'
+          },{
+            title: 'Epicenter',
+            data: 'epicenter'
+          },{
+            title: 'Tsunami',
+            data: 'tsunami'
+          },{
+            title: 'Nearest Latitude',
+            data: 'nearest_lat'
+          },{
+            title: 'Nearest Longitude',
+            data: 'nearest_lng'
+          },{
+            title: 'Distance',
+            data: 'distance'
+          },{
+            title: 'Location',
+            data: 'location'
+          },{
+            title: 'Speed',
+            data: 'speed'
+          }]
     };
+        // this.dtOptions = {
+        //   ajax: 'data/data.json',
+        //   columns: [{
+        //     title: 'Magnitude',
+        //     data: 'magnitude'
+        //   }, {
+        //     title: 'Depth',
+        //     data: 'depth'
+        //   }, {
+        //     title: 'Latitude',
+        //     data: 'latitude'
+        //   },{
+        //     title: 'Longitude',
+        //     data: 'longitude'
+        //   },{
+        //     title: 'Epicenter',
+        //     data: 'epicenter'
+        //   },{
+        //     title: 'Tsunami',
+        //     data: 'tsunami'
+        //   },{
+        //     title: 'Nearest Latitude',
+        //     data: 'nearest_lat'
+        //   },{
+        //     title: 'Nearest Longitude',
+        //     data: 'nearest_lng'
+        //   },{
+        //     title: 'Distance',
+        //     data: 'distance'
+        //   },{
+        //     title: 'Location',
+        //     data: 'location'
+        //   },{
+        //     title: 'Speed',
+        //     data: 'speed'
+        //   }]
+        // };
+  }
+  ngAfterViewInit(): void {
+    this.datatableElement.dtInstance.then((dtInstance: DataTables.Api) => {
+      dtInstance.columns().every(function () {
+        const that = this;
+        $('input', this.footer()).on('keyup change', function () {
+          if (that.search() !== this['value']) {
+            that
+              .search(this['value'])
+              .draw();
+          }
+        });
+      });
+    });
   }
 }
 interface earthquake_data {

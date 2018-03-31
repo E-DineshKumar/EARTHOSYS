@@ -68,9 +68,9 @@
                             </div>
                         </div>
                         <div class="msg-box">
-                            <input  type="text" [(ngModel)]= "message" class="ip-msg" placeholder="type something.." />
+                            <input #box (keyup.enter)="onEnter()" type="text" [(ngModel)]= "message" class="ip-msg" placeholder="type something.." />
                             <span class="btn-group">
-                                <a (click) = "onSendMessage()" >
+                                <a   (click) = "onSendMessage()" >
                                 <i class="material-icons">send</i>
                                 </a>
                             </span>
@@ -182,7 +182,7 @@
                                 <span> <input type="text" class="ip-predict" placeholder="Magnitude" name="magnitude" [(ngModel)]="magnitude"></span>
                                 <span> <input type="text" class="ip-predict" placeholder="Focal Depth" name="focal_depth" [(ngModel)]="depth"></span>
                                 <span> <input type="text" class="ip-predict" placeholder="Latitude" name="latitude" [(ngModel)]="latitude"></span>
-                                <span> <input type="text" class="ip-predict" placeholder="Longitude" name="longitude" [(ngModel)]="longitude"></span>
+                                <span> <input #predictBox (keyup.enter)="onPredictEnter()" type="text" class="ip-predict" placeholder="Longitude" name="longitude" [(ngModel)]="longitude"></span>
                               </li>
 
                             </ul>
