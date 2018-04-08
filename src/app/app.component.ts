@@ -32,7 +32,6 @@ export class AppComponent implements OnInit {
           for (var i = 0; i < jsonData.feeds.length; i++) {
             var feed = jsonData.feeds[i];
             this.e_data.push({ mag: feed.magnitude, dep: feed.depth, lat: feed.latitude, lng: feed.longitude, epic: feed.epicenter, date: feed.date, tsu: feed.tsunami, near_lat: feed.nearest_lat, near_lng: feed.nearest_lng, distance: feed.distance, loc: feed.location, speed: feed.speed });
-            //console.log(feed.nearest_lat);
             localStorage.setItem("store_data", JSON.stringify(this.e_data));
           }
           for (var i = 0; i < jsonData.records.length; i++) {
@@ -78,10 +77,10 @@ export class AppComponent implements OnInit {
   onClickFab() {
     this.visible = 0;
   }
-  onEnter() {     
+  onEnter() {
     this.onSendMessage();
   }
-  onPredictEnter(){
+  onPredictEnter() {
     this.onSendPredictor();
   }
   public e_data: earthquake_data[] = [];
@@ -131,7 +130,6 @@ export class AppComponent implements OnInit {
           if (JSON.parse(result["_body"])["status"] == "success") {
             var res = JSON.parse(result["_body"]);
             this.tsunami = res["result"];
-            //this.p_data.push({mag : res.magnitude, dep : res.depth, lat : res.latitude, lng : res.longitude, tsu : res.tsunami,near_lat : res.nearest_lat,near_lng : res.nearest_lng,distance : res.distance,loc : res.location,speed : res.speed,date : res.date});
             this.predict_message = "Message : " + res["description"];
             setTimeout(() => {
               this.predict_message = "";

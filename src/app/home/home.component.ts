@@ -9,9 +9,9 @@ import { DjangoService } from './../django.service';
   styleUrls: ['./home.component.css']
 })
 export class HomeComponent implements OnInit {
-e_data : earthquake_data[];// = this.appComponent.e_data;
-  constructor(private djangoService : DjangoService) {
-    Observable.interval(2000*60).subscribe(x => {
+  e_data: earthquake_data[];
+  constructor(private djangoService: DjangoService) {
+    Observable.interval(2000 * 60).subscribe(x => {
       let a = localStorage.getItem("store_data");
       this.e_data = JSON.parse(a);
     })
@@ -25,16 +25,16 @@ e_data : earthquake_data[];// = this.appComponent.e_data;
 
 }
 interface earthquake_data {
-  mag : number;
-  dep : number;
-	lat : number;
-	lng : number;
-  epic : number;
-  date : String;
-  tsu : boolean;
-  near_lat : number;
-  near_lng : number;
-  distance : number;
-  loc : String;
-  speed : String;
+  mag: number;
+  dep: number;
+  lat: number;
+  lng: number;
+  epic: number;
+  date: String;
+  tsu: boolean;
+  near_lat: number;
+  near_lng: number;
+  distance: number;
+  loc: String;
+  speed: String;
 }

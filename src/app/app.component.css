@@ -1,5 +1,3 @@
-/* Propeller typography */
-/*@import "http://propeller.in/components/typography/css/typography.css";*/
 
 /* Propeller buttons */
 @import "http://propeller.in/components/button/css/button.css";
@@ -28,8 +26,6 @@
 
 .pmd-floating-action-btn .ink{ width:50px; height:50px;}
 
-
-
 /* navbar */
 .navbar-default {
     background-color: white;
@@ -39,8 +35,6 @@
 /* Title */
 .navbar-default .navbar-brand {
     color:#424242;
-    /*padding-top: 12.5%;*/
-
 }
 .navbar-default .navbar-brand:hover,
 .navbar-default .navbar-brand:focus {
@@ -169,7 +163,7 @@ div.app:after
   height: 100px;
   display: inline-block;
   bottom: 0;
-  /*box-shadow: inset 0 -80px 85px -35px #3c33b0;*/
+  
   z-index: 0;
 }
 
@@ -383,8 +377,6 @@ div.msg-box span.btn-group
   margin-top: 5px;
   display: inline-block;
   margin-right: 10px;
-
-
 }
 
 div.msg-box span.btn-group i
@@ -393,8 +385,6 @@ div.msg-box span.btn-group i
   background-color: rgba(60,51,176,1);
   color: white;
   border-radius: 50%;
-
-  /*color: rgba(60,51,176,1);*/
   font-size: 22px;
   padding: 7px 7px;
 }
@@ -416,7 +406,6 @@ div.msg-box span.btn-group i
   width:15%;
   font-size: 11px;
   padding: 5px 8px;
-
   color: rgba(60,51,176,0.9);
   border-radius: 30px;
   border: 1px solid rgba(60,51,176,0.9);

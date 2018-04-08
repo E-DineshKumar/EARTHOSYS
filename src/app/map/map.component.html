@@ -1,18 +1,7 @@
-               
 <div id="map">
-    <agm-map  [latitude]="lat" [longitude]="lng">
-        <agm-marker 
-            *ngFor="let m of markers;"
-            [latitude]="m.lat"
-            [longitude]="m.lng">
+    <agm-map [latitude]="lat" [longitude]="lng">
+        <agm-marker *ngFor="let m of markers;" [latitude]="m.lat" [longitude]="m.lng">
             <agm-info-window>{{m.tsu}}</agm-info-window>
         </agm-marker>
-        <!--<agm-circle *ngFor="let m of markers;"
-            [latitude]="m.lat" [longitude]="m.lng" 
-            [radius]="5000"
-            [fillColor]="'red'"
-            [circleDraggable]="false"
-            [editable]="false">
-        </agm-circle>-->
     </agm-map>
 </div>

@@ -1,137 +1,139 @@
-    <div  id="video-carousel-example2" class="carousel slide carousel-fade hide-video" data-ride="carousel">
-
-            <!--Slides-->
-            <div class="carousel-inner" role="listbox">
-                <!--First slide-->
-                <div class="carousel-item active">
-                    <!--Mask color-->
-                    <div class="view hm-black-light">
-                        <!--Video source-->
-                        <video class="video-full" autoplay loop>
-                            <source src="https://mdbootstrap.com/img/video/Tropical.mp4" type="video/mp4" />
-                        </video>
-                        <div class="full-bg-img"></div>
-                    </div>
-
-                    <!--Caption-->
-                    <div class="carousel-caption">
-                        <div class="flex-center animated fadeIn">
-                            <ul>
-                                <li>
-                                    <h1 class="h1-responsive">EARTHOSYS</h1>
-                                </li>
-                                <li>
-                                    <p>Tsunami Predicting and Warning System</p>
-                                </li>
-                                <li>
-                                    <a routerLink="/earthquake" routerLinkActive="active" href="#" class="btn btn-primary btn-lg" rel="nofollow">Earthquake</a>
-                                    <a routerLink="/about" routerLinkActive="active" class="btn btn-default btn-lg" rel="nofollow">Learn more</a>
-                                </li>
-                            </ul>
-                        </div>
-                    </div>
-                    <!--Caption-->
-                </div>
-            <!--Main Navigation-->
+<div id="video-carousel-example2" class="carousel slide carousel-fade hide-video" data-ride="carousel">
+    <!--Slides-->
+    <div class="carousel-inner" role="listbox">
+        <!--First slide-->
+        <div class="carousel-item active">
+            <!--Mask color-->
+            <div class="view hm-black-light">
+                <!--Video source-->
+                <video class="video-full" autoplay loop>
+                    <source src="https://mdbootstrap.com/img/video/Tropical.mp4" type="video/mp4" />
+                </video>
+                <div class="full-bg-img"></div>
             </div>
-    </div>
 
-    <main>
-        <!--Main layout-->
-        <div class="container">
-
-            <!--Page heading-->
-            <div class="row wow fadeIn" data-wow-delay="0.2s">
-                <div class="col-md-12 mt-5">
-                    <h2 class="h1-responsive font-bold">Earthquakes
-                        <small class="text-muted">Recent Earthquakes occured across the world</small>
-                    </h2>
+            <!--Caption-->
+            <div class="carousel-caption">
+                <div class="flex-center animated fadeIn">
+                    <ul>
+                        <li>
+                            <h1 class="h1-responsive">EARTHOSYS</h1>
+                        </li>
+                        <li>
+                            <p>Tsunami Predicting and Warning System</p>
+                        </li>
+                        <li>
+                            <a routerLink="/earthquake" routerLinkActive="active" href="#" class="btn btn-primary btn-lg" rel="nofollow">Earthquake</a>
+                            <a routerLink="/about" routerLinkActive="active" class="btn btn-default btn-lg" rel="nofollow">Learn more</a>
+                        </li>
+                    </ul>
                 </div>
             </div>
-            <!--/.Page heading-->
-            <hr>
-
-            <!--First row-->
-            <div class="row mt-5 wow fadeIn" data-wow-delay="0.2s">
-                <!--Featured image-->
-                <div class="col-lg-6">
-                    <div>
-                        <app-map></app-map>
-                    </div>
-                </div>
-                <!--/.Featured image-->
-                <!--Post excerpt-->
-                <div class="col-lg-6">
-                    <a routerLink="/earthquake" routerLinkActive="active">
-                        <h2 class="post-title font-bold">Past earthquakes</h2>
-                    </a>
-                    <h6 class="dark-grey-text font-bold font-small">Last updated Time</h6>
-                    <!--Table-->
-                    <table class="table">
-
-                        <!--Table head-->
-                        <thead class="mdb-color darken-3">
-                            <tr class="text-white">
-                                  <th>Magnitude</th>
-                                  <th>Depth (km)</th>
-                                  <th>Latitude</th>
-                                  <th>Longitude</th>
-                                  <th>Tsunami</th>
-                                  <th>Epicenter</th>
-                                  <th>Nearest Latitude</th>
-                                  <th>Nearest Longitude</th>
-                                  <th>Location</th>
-                                  <th>Speed (km/hr)</th>
-                                  <th>Distance (km)</th>
-                            </tr>
-                        </thead>
-                        <!--Table head-->
-
-                        <!--Table body-->
-                        <tbody *ngFor= "let earthquake of e_data">
-                              <tr>
-                                  <td>{{ earthquake.mag }}</td>
-                                  <td>{{ earthquake.dep }}</td>
-                                  <td>{{ earthquake.lat }}</td>
-                                  <td>{{ earthquake.lng }}</td>
-                                  <td>{{ earthquake.tsu }}</td>
-                                  <td>{{ earthquake.epic }}</td>
-                                  <td>{{ earthquake.near_lat }}</td>
-                                  <td>{{ earthquake.near_lng }}</td>
-                                  <td>{{ earthquake.loc }}</td>
-                                  <td>{{ earthquake.speed }}</td>
-                                  <td>{{ earthquake.distance }}</td>
-                              </tr>
-                          </tbody>
-                        <!--Table body-->
-                    </table>
-                    <!--Table-->
-
-                    <div class="read-more">
-                        <a routerLink="/earthquake" routerLinkActive="active" style="font-size: 100%;" class="btn btn-primary btn-lg" rel="nofollow">Read More</a>
-                    </div>
-                </div>
-                <!--/.Post excerpt-->
-            </div>
-            <!--/.First row-->
-            <hr class="extra-margin my-5">
+            <!--Caption-->
         </div>
-        <!--/.Main layout-->
-    </main>
+        <!--Main Navigation-->
+    </div>
+</div>
 
-    <!--Footer-->
-    <footer  class="page-footer center-on-small-only mt-0" style="font-size:100%;">
-        <div style="background : #1C2331;"><br>
+<main>
+    <!--Main layout-->
+    <div class="container">
+
+        <!--Page heading-->
+        <div class="row wow fadeIn" data-wow-delay="0.2s">
+            <div class="col-md-12 mt-5">
+                <h2 class="h1-responsive font-bold">Earthquakes
+                    <small class="text-muted">Recent Earthquakes occured across the world</small>
+                </h2>
+            </div>
+        </div>
+        <!--/.Page heading-->
+        <hr>
+
+        <!--First row-->
+        <div class="row mt-5 wow fadeIn" data-wow-delay="0.2s">
+            <!--Featured image-->
+            <div class="col-lg-6">
+                <div>
+                    <app-map></app-map>
+                </div>
+            </div>
+            <!--/.Featured image-->
+            <!--Post excerpt-->
+            <div class="col-lg-6">
+                <a routerLink="/earthquake" routerLinkActive="active">
+                    <h2 class="post-title font-bold">Past earthquakes</h2>
+                </a>
+                <h6 class="dark-grey-text font-bold font-small">Last updated Time</h6>
+                <!--Table-->
+                <table class="table">
+
+                    <!--Table head-->
+                    <thead class="mdb-color darken-3">
+                        <tr class="text-white">
+                            <th>Magnitude</th>
+                            <th>Depth (km)</th>
+                            <th>Latitude</th>
+                            <th>Longitude</th>
+                            <th>Tsunami</th>
+                            <th>Epicenter</th>
+                            <th>Nearest Latitude</th>
+                            <th>Nearest Longitude</th>
+                            <th>Location</th>
+                            <th>Speed (km/hr)</th>
+                            <th>Distance (km)</th>
+                        </tr>
+                    </thead>
+                    <!--Table head-->
+
+                    <!--Table body-->
+                    <tbody *ngFor="let earthquake of e_data">
+                        <tr>
+                            <td>{{ earthquake.mag }}</td>
+                            <td>{{ earthquake.dep }}</td>
+                            <td>{{ earthquake.lat }}</td>
+                            <td>{{ earthquake.lng }}</td>
+                            <td>{{ earthquake.tsu }}</td>
+                            <td>{{ earthquake.epic }}</td>
+                            <td>{{ earthquake.near_lat }}</td>
+                            <td>{{ earthquake.near_lng }}</td>
+                            <td>{{ earthquake.loc }}</td>
+                            <td>{{ earthquake.speed }}</td>
+                            <td>{{ earthquake.distance }}</td>
+                        </tr>
+                    </tbody>
+                    <!--Table body-->
+                </table>
+                <!--Table-->
+
+                <div class="read-more">
+                    <a routerLink="/earthquake" routerLinkActive="active" style="font-size: 100%;" class="btn btn-primary btn-lg" rel="nofollow">Read More</a>
+                </div>
+            </div>
+            <!--/.Post excerpt-->
+        </div>
+        <!--/.First row-->
+        <hr class="extra-margin my-5">
+    </div>
+    <!--/.Main layout-->
+</main>
+
+<!--Footer-->
+<footer class="page-footer center-on-small-only mt-0" style="font-size:100%;">
+    <div style="background : #1C2331;">
+        <br>
 
         <!--Footer links-->
-        <div  class="container">
+        <div class="container">
             <div class="row">
                 <!--First column-->
                 <div class="col-lg-6 col-md-6">
                     <h5 class="title mb-3">
                         <strong>About EARTHOSYS</strong>
                     </h5>
-                    <p style="text-align:justify;width:50%">Earthosys - Tsunami Predicting and Warning AI System. To predict killer waves so called as Tsunami in advance and report the details to the nearby coast incorporated with modern technologies such as IoT, Machine Learning, Cloud Computing, ChatBots.</p>
+                    <p style="text-align:justify;width:50%">Earthosys - Tsunami Predicting and Warning AI System. To predict killer waves so called as Tsunami in
+                        advance and report the details to the nearby coast incorporated with modern technologies such as
+                        IoT, Machine Learning, Cloud Computing, ChatBots.</p>
                 </div>
                 <!--/.First column-->
                 <!--Second column-->
@@ -155,7 +157,6 @@
                     </ul>
                 </div>
                 <!--/.Second column-->
-                <!--<hr class="w-100 clearfix d-sm-none">-->
                 <!--Third column-->
                 <div class="col-lg-3 col-md-6 ml-auto">
                     <h5 class="title mb-3">
@@ -175,8 +176,6 @@
             </div>
         </div>
         <!--/.Footer links-->
-
-
 
         <!--Call to action-->
         <div class="call-to-action">
@@ -204,6 +203,6 @@
             </div>
         </div>
         <!--/.Copyright-->
-        </div>
-    </footer>
-    <!--/.Footer-->
+    </div>
+</footer>
+<!--/.Footer-->

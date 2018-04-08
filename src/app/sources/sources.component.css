@@ -1,18 +1,11 @@
-
-
 .img {
   margin-top: 5%;
-
 }
-
-
 .info {
   float: left;
   border-radius: 0 7px 10px 7px;
   background-color: #ffffff;
 }
-
-
 .text h1 {
   margin-left: 30px;
   padding-top: 52px;
@@ -21,9 +14,6 @@
   font-weight: 400;
   display: inline-block
 }
-
-
-
 .text h2 {
   margin-left: 15px;
   font-size: 15px;
@@ -31,14 +21,10 @@
   font-weight: 400;
   text-transform: uppercase;
   color: rgba(0, 0, 0, 0.6);
-
   letter-spacing: 0.1em;
-  display: inline-block
-
+  display: inline-block;
 }
-
 .text p {
- 
   margin: 0 0 0 38px;
   font-family: 'Playfair Display', serif;
   color: #8d8d8d;

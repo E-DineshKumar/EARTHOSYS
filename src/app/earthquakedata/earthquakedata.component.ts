@@ -13,15 +13,15 @@ var object;
   styleUrls: ['./earthquakedata.component.css']
 })
 export class EarthquakedataComponent implements OnInit {
-  
-  e_data : earthquake_data[] = [];
-  lat: number= 0.0;
+
+  e_data: earthquake_data[] = [];
+  lat: number = 0.0;
   lng: number = 0.0;
   @ViewChild(DataTableDirective)
   datatableElement: DataTableDirective;
   dtOptions: DataTables.Settings = {};
   constructor(private http: HttpClient) {
-    
+
   }
 
   ngOnInit(): void {
@@ -47,121 +47,57 @@ export class EarthquakedataComponent implements OnInit {
             });
           });
       },
-      // columns : [
-      //   {"data" : "magnitude"},
-      //   {"data" : "depth"},
-      //   {"data" : "latitude"},
-      //   {"data" : "longitude"},
-      //   {"data" : "epicenter"},
-      //   {"data" : "tsunami"},
-      //   {"data" : "nearest_lat"},
-      //   {"data" : "nearest_lng"},
-      //   {"data" : "distance"},
-      //   {"data" : "location"},
-      //   {"data" : "speed"}
-      // ]
-      
-                columns: [{
-            title: 'Magnitude',
-            data: 'magnitude'
-          }, {
-            title: 'Depth',
-            data: 'depth'
-          }, {
-            title: 'Latitude',
-            data: 'latitude'
-          },{
-            title: 'Longitude',
-            data: 'longitude'
-          },{
-            title: 'Epicenter',
-            data: 'epicenter'
-          },{
-            title: 'Tsunami',
-            data: 'tsunami'
-          },{
-            title: 'Nearest Latitude',
-            data: 'nearest_lat'
-          },{
-            title: 'Nearest Longitude',
-            data: 'nearest_lng'
-          },{
-            title: 'Distance',
-            data: 'distance'
-          },{
-            title: 'Location',
-            data: 'location'
-          },{
-            title: 'Speed',
-            data: 'speed'
-          }]
+
+      columns: [{
+        "title": 'Magnitude',
+        "data": 'magnitude'
+      }, {
+        "title": 'Depth',
+        "data": 'depth'
+      }, {
+        "title": 'Latitude',
+        "data": 'latitude'
+      }, {
+        "title": 'Longitude',
+        "data": 'longitude'
+      }, {
+        "title": 'Epicenter',
+        "data": 'epicenter'
+      }, {
+        "title": 'Tsunami',
+        "data": 'tsunami'
+      }, {
+        "title": 'Nearest Latitude',
+        "data": 'nearest_lat'
+      }, {
+        "title": 'Nearest Longitude',
+        "data": 'nearest_lng'
+      }, {
+        "title": 'Distance',
+        "data": 'distance'
+      }, {
+        "title": 'Location',
+        "data": 'location'
+      }, {
+        "title": 'Speed',
+        "data": 'speed'
+      }]
     };
-        // this.dtOptions = {
-        //   ajax: 'data/data.json',
-        //   columns: [{
-        //     title: 'Magnitude',
-        //     data: 'magnitude'
-        //   }, {
-        //     title: 'Depth',
-        //     data: 'depth'
-        //   }, {
-        //     title: 'Latitude',
-        //     data: 'latitude'
-        //   },{
-        //     title: 'Longitude',
-        //     data: 'longitude'
-        //   },{
-        //     title: 'Epicenter',
-        //     data: 'epicenter'
-        //   },{
-        //     title: 'Tsunami',
-        //     data: 'tsunami'
-        //   },{
-        //     title: 'Nearest Latitude',
-        //     data: 'nearest_lat'
-        //   },{
-        //     title: 'Nearest Longitude',
-        //     data: 'nearest_lng'
-        //   },{
-        //     title: 'Distance',
-        //     data: 'distance'
-        //   },{
-        //     title: 'Location',
-        //     data: 'location'
-        //   },{
-        //     title: 'Speed',
-        //     data: 'speed'
-        //   }]
-        // };
-  }
-  ngAfterViewInit(): void {
-    this.datatableElement.dtInstance.then((dtInstance: DataTables.Api) => {
-      dtInstance.columns().every(function () {
-        const that = this;
-        $('input', this.footer()).on('keyup change', function () {
-          if (that.search() !== this['value']) {
-            that
-              .search(this['value'])
-              .draw();
-          }
-        });
-      });
-    });
   }
 }
 interface earthquake_data {
-  mag : number;
-  dep : number;
-	lat : number;
-	lng : number;
-  epic : number;
-  date : String;
-  tsu : boolean;
-  near_lat : number;
-  near_lng : number;
-  distance : number;
-  loc : String;
-  speed : String;
+  mag: number;
+  dep: number;
+  lat: number;
+  lng: number;
+  epic: number;
+  date: String;
+  tsu: boolean;
+  near_lat: number;
+  near_lng: number;
+  distance: number;
+  loc: String;
+  speed: String;
 }
 class DataTablesResponse {
   data: any[];
